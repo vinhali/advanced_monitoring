@@ -28,7 +28,7 @@ Atualmente o monitoramento realizados por pequenas e grandes empresas é baseado
 
 ## :heavy_exclamation_mark: Diferença entre o projeto e a função forecast do Zabbix
 
-Como pode ser lido na documentação oficial do ZABBIX a função forecast utiliza regressão linear, este projeto utiliza redes neurais recorrentes que são estruturas de processamento capazes de representar uma tendência com filtros não-lineares, ou seja, que não são vísiveis em linha, como o uso de memória de dispositivo.
+Como pode ser lido na documentação oficial do ZABBIX a função forecast utiliza regressão linear, este projeto utiliza redes neurais recorrentes que são estruturas de processamento capazes de representar uma tendência com filtros não-lineares, ou seja, que não são vísiveis em linha, como o uso de memória de um dispositivo.
 
 <b>Exemplo:</b>
 
