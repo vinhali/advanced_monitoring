@@ -11,11 +11,17 @@ Este projeto é o desenvolvimento de um trabalho acadêmico (TCC) realizado para
 O projeto tem como core de desenvolvimento a monitorção de infraesturtura (servidores), incluindo diversos componentes como:
 
 -CPU (total/livre/uso);
+
 -Memória (total/livre/uso);
+
 -DISCO (total/livre/uso);
+
 -PROCESSOS (por usuário/nativos/críticos);
+
 -REDE (outbound/inbound);
+
 -Banco de dados (query/filesystems);
+
 -Entre outros componentes possíveis de montiração pela plataforma Zabbix.
 
 Atualmente o monitoramento realizados por pequenas e grandes empresas é baseado em criar uma atuação técnica ou autômata em cima do treshold (limite) estabelicido na trigger (gatilho) do device monitorado. Agindo de forma não preventiva, ou seja, eliminando o problema após ocorrer. É compreensível está forma de monitoramento ultrapassada pois os avanços notáveis em inteligência artifical estão surgindo, ou pelo menos mais acessíveis agora. Em cima do que foi dissertado agora, o projeto tem como iniciativa gerar um monitoramento inteligente prevendo eventuais tendências de um device considerando sua matriz de criticidade ao ambiente do cliente, e além disso analisar se o treshold estabelicido é o recomendado para tal cenário.
