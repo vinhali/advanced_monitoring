@@ -1,12 +1,12 @@
-<h1 align="center">
+<h1 align="left">
     <img alt="Advanced Monitoring" src="https://www.sierraexperts.com/documents/2016/04/Infrastructure-Monitoring.png" width="200px" />
 </h1>
 
-<h1 align="center"><b> Sobre o desenvolvedor </b></h1>
+## :rocket: Sobre o desenvolvedor
 
 Este projeto é o desenvolvimento de um trabalho acadêmico (TCC) realizado para Universidade Paulista (UNIP) por Luis Vinhali, portado do número de matrícula N18202-4, em 2020.
 
-<h1 align="center"><b> Sobre o projeto </b></h1>
+## :rocket: Sobre o projeto
 
 O projeto tem como core de desenvolvimento a monitorção de infraesturtura (servidores), incluindo diversos componentes como:
 
@@ -33,9 +33,9 @@ Um e-commerce possuí uma determinada demanda durante dias normais, em temporada
 
 [Forecast Zabbix](https://www.zabbix.com/documentation/3.0/pt/manual/config/triggers/prediction)
 
-<h1 align="center"><b> Estrutura do projeto </b></h1>
+## :rocket: Esturtura do projeto
 
-<h1 align="center">
+<h1 align="left">
     <img alt="Estrutura do projeto" src="https://i.ibb.co/L135GtG/MONITORING-EXPERT.png" width="500px" height="500px"/>
 </h1>
 
