@@ -33,8 +33,9 @@ Como pode ser lido na documentação oficial do ZABBIX a função forecast utili
 Um e-commerce possuí uma determinada demanda durante dias normais, em temporadas como black friday essa demanda não é linear.
 
 <h1 align="left">
-    <img alt="Zabbix" src="https://assets.zabbix.com/img/logo/zabbix_logo_500x131.png" width="50px" height="50px"/>
+    <img alt="Zabbix" src="https://assets.zabbix.com/img/logo/zabbix_logo_500x131.png" width="100px" height="50px"/>
 </h1>
+
 [Forecast Zabbix](https://www.zabbix.com/documentation/3.0/pt/manual/config/triggers/prediction)
 
 ## :skull: Estrutura do projeto
