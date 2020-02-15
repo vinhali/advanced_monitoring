@@ -2,14 +2,14 @@
     <img alt="Advanced Monitoring" src="https://www.sierraexperts.com/documents/2016/04/Infrastructure-Monitoring.png" width="200px" />
 </h1>
 
-## Sobre o projeto
+<h1 align="center"><b> Sobre o projeto </b></h1>
 
 Este projeto
 
 ## Estrutura do projeto
 
-<h1 align="center">
-    <img alt="Estrutura do projeto" src="https://i.ibb.co/L135GtG/MONITORING-EXPERT.png" width="600px" height="400px"/>
+<h1 align="left">
+    <img alt="Estrutura do projeto" src="https://i.ibb.co/L135GtG/MONITORING-EXPERT.png" width="500px" height="500px"/>
 </h1>
 
 ## :rocket: Fases
