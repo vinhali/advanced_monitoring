@@ -1,12 +1,18 @@
+## Sobre o projeto
+
 <h1 align="center">
     <img alt="Advanced Monitoring" src="https://www.sierraexperts.com/documents/2016/04/Infrastructure-Monitoring.png" width="200px" />
 </h1>
 
+Este projeto
+
+## Estrutura do projeto
+
 <h1 align="center">
-    <img alt="Estrutura do projeto" src="https://i.ibb.co/L135GtG/MONITORING-EXPERT.png" width="200px" />
+    <img alt="Estrutura do projeto" src="https://i.ibb.co/L135GtG/MONITORING-EXPERT.png" width="600px" />
 </h1>
 
-## :rocket: Sobre
+## :rocket: Fases
 
 :heavy_check_mark: Fase 1 - Instalação e configuração do ambiente em Linux (Debian stable 10)
 
