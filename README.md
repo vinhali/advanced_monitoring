@@ -10,7 +10,10 @@ Este projeto é o desenvolvimento de um trabalho acadêmico (TCC) realizado para
 
 O projeto tem como core de desenvolvimento a monitorção de infraesturtura (servidores), incluindo diversos componentes como:
 
--CPU (total/livre/uso/etc);
+Componentes| Dados |
+------ | ------ |
+
+|CPU |total/livre/uso/etc|
 
 -Memória (total/livre/uso/etc);
 
