@@ -12,22 +12,16 @@ O projeto tem como core de desenvolvimento a monitorção de infraesturtura (ser
 
 Componentes| Dados  |
 ---------- | ------ |
-
 | CPU | total/livre/uso/etc |
-
 | Memória | (total/livre/uso/etc |
-
 | Disco | (total/livre/uso/etc |
-
 | Processos | (usuário/nativos/críticos/etc |
-
 | Redes | outbound/inbound/regras/etc |
-
 | Banco de dados | query/filesystems/permissões/etc |
 
 Entre outros componentes possíveis de monitoração pela plataforma Zabbix.
 
-Atualmente o monitoramento realizados por pequenas e grandes empresas é baseado em criar uma atuação técnica ou autômata em cima do treshold (limite) estabelicido na trigger (gatilho) do device monitorado. Agindo de forma não preventiva, ou seja, eliminando o problema após ocorrer. É compreensível está forma de monitoramento ultrapassada pois os avanços notáveis em inteligência artifical estão mais acessíveis agora. Em cima do que foi dissertado agora, o projeto tem como iniciativa gerar um monitoramento inteligente prevendo eventuais tendências de um device considerando sua matriz de criticidade ao ambiente do cliente, e além disso analisar se o treshold estabelicido é o recomendado para tal cenário, possibilitando gerar ações de correções para o problema pelo orquestrador de infraestrutura ansible, com visualização e documentação dos eventos com Grafana e GLPI.
+Atualmente o monitoramento realizados por pequenas e grandes empresas é baseado em criar uma atuação técnica ou autômata em cima do treshold (limite) estabelicido na trigger (gatilho) do device monitorado. Agindo de forma não preventiva, ou seja, eliminando o problema após ocorrer. Em cima do que foi dissertado agora, o projeto tem como iniciativa gerar um monitoramento inteligente prevendo eventuais tendências de um device considerando sua matriz de criticidade ao ambiente do cliente, e além disso analisar se o treshold estabelicido é o recomendado para tal cenário, possibilitando gerar ações de correções para o problema pelo orquestrador de infraestrutura ansible, com visualização e documentação dos eventos com Grafana e GLPI.
 
 <h1 align="center"><b> Diferença entre o projeto e a função forecast do Zabbix </b></h1>
 
