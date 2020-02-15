@@ -35,8 +35,10 @@ Como pode ser lido na documentação oficial do ZABBIX a função forecast utili
 Um e-commerce possuí uma determinada demanda durante dias normais, em temporadas como black friday essa demanda não é linear, ou seja, sua previsão só poder ser feita por algoritmos não-lineares como redes neurais recorrentes.
 
 <h1 align="left">
+    <a href="https://www.zabbix.com/documentation/3.0/pt/manual/config/triggers/prediction">
     <img alt="Zabbix" src="https://assets.zabbix.com/img/logo/zabbix_logo_500x131.png" width="100px" height="50px"/>
-</h1> [Forecast Zabbix](https://www.zabbix.com/documentation/3.0/pt/manual/config/triggers/prediction)
+    </a>
+</h1>
 
 [Forecast Zabbix](https://www.zabbix.com/documentation/3.0/pt/manual/config/triggers/prediction)
 
