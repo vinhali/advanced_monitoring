@@ -5,7 +5,12 @@
 
 ## :bust_in_silhouette: Sobre o desenvolvedor
 
-Este projeto é o desenvolvimento de um trabalho acadêmico (TCC) realizado para Universidade Paulista (UNIP) por Luis Vinhali, portado do número de matrícula N18202-4, em 2020.
+Este projeto é o desenvolvimento de um trabalho acadêmico (TCC) realizado para Universidade Paulista (UNIP) por Luis Vinhali, portado do número de matrícula N18202-4, para apresentaçã no ano de 2020.
+
+## :mortar_board: Orientadores
+
+Prof. Mestre Amaury B. André
+Prof. Mestre Mateus Locci
 
 
 ## :rocket: Sobre o projeto
