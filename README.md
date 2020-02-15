@@ -1,8 +1,7 @@
 ## Monitoramento Avançado - IA
 <h1 align="left">
-    <img alt="Advanced Monitoring" src="https://www.sierraexperts.com/documents/2016/04/Infrastructure-Monitoring.png" width="300px" />
+    <img alt="Advanced Monitoring" src="https://i.imgur.com/HoeiIso.png" width="300px" />
 </h1>
-
 
 ## :bust_in_silhouette: Sobre o desenvolvedor
 
@@ -33,7 +32,7 @@ Como pode ser lido na documentação oficial do ZABBIX a função forecast utili
 
 <b>Exemplo:</b>
 
-Um e-commerce possuí uma determinada demanda durante dias normais, em temporadas como black friday essa demanda não é linear.
+Um e-commerce possuí uma determinada demanda durante dias normais, em temporadas como black friday essa demanda não é linear, ou seja, sua previsão só poder ser feita por algoritmos não-lineares como redes neurais recorrentes.
 
 <h1 align="left">
     <img alt="Zabbix" src="https://assets.zabbix.com/img/logo/zabbix_logo_500x131.png" width="100px" height="50px"/>
