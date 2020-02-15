@@ -29,7 +29,9 @@ Componentes| Dados  |
 
 Entre outros componentes possíveis de monitoração pela plataforma Zabbix.
 
-Atualmente o monitoramento realizados por pequenas e grandes empresas é baseado em criar uma atuação técnica ou autômata em cima do treshold (limite) estabelicido pela trigger (gatilho) para o host/device monitorado. Agindo de forma não preventiva, ou seja, eliminando o problema após ocorrer. Em cima do que foi dissertado agora, o projeto tem como iniciativa gerar um monitoramento inteligente prevendo eventuais tendências de um host/device considerando sua matriz de criticidade ao ambiente do cliente, e além disso analisar se o treshold estabelicido é o recomendado para tal cenário, possibilitando gerar ações de correções para o problema pelo orquestrador de infraestrutura ansible, com visualização e documentação dos eventos com Grafana e GLPI.
+Atualmente o monitoramento realizados por pequenas e grandes empresas é baseado em criar uma atuação técnica ou autômata em cima do treshold (limite) estabelicido pela trigger (gatilho) para o host/device monitorado. Agindo de forma não preventiva, ou seja, eliminando o problema após ocorrer.
+<br>
+Em cima do que foi dissertado agora, o projeto tem como iniciativa gerar um monitoramento inteligente prevendo eventuais tendências de um host/device considerando sua matriz de criticidade ao ambiente do cliente, e além disso analisar se o treshold estabelicido é o recomendado para tal cenário, possibilitando gerar ações de correções para o problema pelo orquestrador de infraestrutura ansible, com visualização e documentação dos eventos com Grafana e GLPI.
 
 
 ## :heavy_exclamation_mark: Diferença entre o projeto e a função forecast do Zabbix
@@ -78,8 +80,10 @@ Um e-commerce possuí uma determinada demanda durante dias normais, em temporada
 
 ## :movie_camera: Cenário teste do projeto
 
-Um cliente possuí um device alocado em cloud, onde essa máquina possuí configurações de baixo desempenho para economizar no valor de custo de horas online, levando em conta que a regra de negocío desse cliente é disponibilidade (24x7x365). A temporada de preço baixo está se aproximando, conhecida como BLACK FRIDAY, o CEO da empresa gostaria que seu monitoramento fosse realizado por demanda, ou seja, que a alocação de uma nova máquina só seja realizada quando necessário. 
+Um cliente possuí um device alocado em cloud, onde essa máquina possuí configurações de baixo desempenho para economizar no valor de custo de horas online, levando em conta que a regra de negocío desse cliente é disponibilidade (24x7x365). A temporada de preço baixo está se aproximando, conhecida como BLACK FRIDAY, o CEO da empresa gostaria que seu monitoramento fosse realizado por demanda, ou seja, que a alocação de uma nova máquina só seja realizada quando necessário.
+<br>
 O Zabbix server é o responsável por monitorar o servidor que está alocado o banco de dados e serviço web dessa empresa, com tais informações coletadas o servidor de inteligência irá processar as informações coletadas em tempo real com as informações posteriores dessa temporada, considerando que a retenção de logs seja >= 365 dias.
+<br>
 Após esse processamento por redes neurais recorrentes utilizando Python como kernel da análise, os dados serão enviadas para o banco de dados PostgreSQL via batch, o script de health check irá ler os dados recém inseridos e buscar por possíveis problemas, após detectar um alto consumo de memória da máquina pelo banco de dados, irá realizar o START de uma nova máquina com configurações superiores a máquina em execução gerando um alerta no GLPI sobre o incidente que o ocorreu e quais foram as soluções testadas até o incidente ser tratado, gerando uma base histórica para facilitar a próxima análise, por fim o cliente e técnicos podem visualizar todo o processo de forma amigável pelo Dashboard criado no Grafana.
 
 
