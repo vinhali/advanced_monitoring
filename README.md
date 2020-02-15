@@ -40,8 +40,6 @@ Um e-commerce possuí uma determinada demanda durante dias normais, em temporada
     </a>
 </h1>
 
-[Forecast Zabbix](https://www.zabbix.com/documentation/3.0/pt/manual/config/triggers/prediction)
-
 
 ## :skull: Estrutura do projeto
 
