@@ -1,3 +1,4 @@
+<body align="center">
 <h1 align="center">
     <img alt="Advanced Monitoring" src="https://www.sierraexperts.com/documents/2016/04/Infrastructure-Monitoring.png" width="200px" />
 </h1>
@@ -6,9 +7,9 @@
 
 Este projeto
 
-## Estrutura do projeto
+<h1 align="center"><b> Estrutura do projeto </b></h1>
 
-<h1 align="left">
+<h1 align="center">
     <img alt="Estrutura do projeto" src="https://i.ibb.co/L135GtG/MONITORING-EXPERT.png" width="500px" height="500px"/>
 </h1>
 
@@ -38,3 +39,5 @@ Este projeto
 ## :memo: Licença
 
 Esse projeto está sob a licença das ferramentas open-source utilizadas para desenvolvimento, vide cada licença para implatação do código, não faça apropriação indébita de conteúdo intelectual, ou revenda algo que é gratuito!
+
+</body>
