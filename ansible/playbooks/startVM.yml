@@ -1,0 +1,5 @@
+---
+- hosts: servidores_web
+  tasks:
+  - name: STARTVM
+    command: VBoxManage startvm 'CLIENT2:SRV:LZ:DATA2' --type headless
