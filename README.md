@@ -1,9 +1,9 @@
-## Monitoramento Avançado - IA
+## :computer: Monitoramento Avançado - IA
 <h1 align="left">
     <img alt="Advanced Monitoring" src="https://www.sierraexperts.com/documents/2016/04/Infrastructure-Monitoring.png" width="300px" />
 </h1>
 
-## :people: Sobre o desenvolvedor
+## :bust_in_silhouette: Sobre o desenvolvedor
 
 Este projeto é o desenvolvimento de um trabalho acadêmico (TCC) realizado para Universidade Paulista (UNIP) por Luis Vinhali, portado do número de matrícula N18202-4, em 2020.
 
@@ -34,13 +34,13 @@ Um e-commerce possuí uma determinada demanda durante dias normais, em temporada
 
 [Forecast Zabbix](https://www.zabbix.com/documentation/3.0/pt/manual/config/triggers/prediction)
 
-## :rocket: Esturtura do projeto
+## :construction: Esturtura do projeto
 
 <h1 align="left">
     <img alt="Estrutura do projeto" src="https://i.ibb.co/L135GtG/MONITORING-EXPERT.png" width="500px" height="500px"/>
 </h1>
 
-## :rocket: Fases
+## :o: Fases
 
 :heavy_check_mark: Fase 1 - Instalação e configuração do ambiente em Linux (Debian stable 10)
 
