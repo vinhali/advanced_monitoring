@@ -93,8 +93,8 @@ Esse projeto está sob a licença das ferramentas open-source utilizadas para de
 
 ## Tecnologias
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Ansible_logo.svg/1200px-Ansible_logo.svg.png" width="100px" height="100px"></src>   
-<img src="https://assets.zabbix.com/img/logo/zabbix_logo_500x131.png" width="150px" height="100px"></src>   
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Ansible_logo.svg/1200px-Ansible_logo.svg.png" width="100px" height="100px"></src>    
+<img src="https://assets.zabbix.com/img/logo/zabbix_logo_500x131.png" width="150px" height="100px"></src>    
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1200px-Postgresql_elephant.svg.png" width="100px" height="100px"></src> :small_blue_diamond: 
 <img src="https://logodix.com/logo/1736692.png" width="100px" height="100px"></src> :small_blue_diamond: 
 <img src="https://verdanatech.com/wp-content/uploads/2019/02/logo-glpi-blue.png" width="100px" height="100px"></src> :small_blue_diamond: 
