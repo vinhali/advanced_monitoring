@@ -70,11 +70,15 @@ Um e-commerce possuí uma determinada demanda durante dias normais, em temporada
 
 :heavy_check_mark: Fase 7 - Elaboração do código de redes neurais recorrentes em Python 
 
-:heavy_check_mark: Fase 8 - Implementação dos dados de previsão com o Ansible
+:heavy_check_mark: Fase 8 - Implementação dos dados de previsão com o Ansible para correções automáticas
 
 :heavy_check_mark: Fase 9 - Gerar chamados no portal GLPI
 
 :heavy_check_mark: Fase 10 - Plotar todas as informações dentro do Dashboard Grafana
+
+## :movie_camera: Cenário teste do projeto
+
+Um cliente possuí um device alocado em cloud, onde essa máquina possuí configurações de baixo desempenho para economizar no valor de custo de horas online, levando em conta que a regra de negocío desse cliente é disponibilidade (24x7x365). A temporada de preço baixo está se aproximando, conhecida como BLACK FRIDAY, o CEO da empresa gostaria que seu monitoramento fosse realizado por demanda, ou seja, que a alocação de uma nova máquina só seja realizada quando necessário. O Zabbix server é o responsável por monitorar o servidor que está alocado o banco de dados e serviço web dessa empresa, com tais informações coletadas o servidor de inteligência irá processar as informações coletadas em tempo real com as informações posteriores dessa temporada, considerando que a retenção de logs seja >= 365 dias, após esse processamento por redes neurais recorrentes utilizando Python como kernel da análise, os dados serão enviado para o banco de dados PostgreSQL como batch, o script de heath check irá ler os dados recém inseridos e buscar por possíveis problemas, após detectar um alto consumo de memória da máquina pelo banco de dados, irá realizar o START de uma nova máquina com configurações superiores a máquina em execução gerando um alerta no GLPI sobre o incidente que o ocorreu e quais foram as soluções testadas para solução, por fim o cliente e técnicos poderá visualizar tudo isso de forma amigável pelo Dashboard criado no Grafana.
 
 
 ## :memo: Licença
