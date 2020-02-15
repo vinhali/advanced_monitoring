@@ -10,6 +10,7 @@ Este projeto é o desenvolvimento de um trabalho acadêmico (TCC) realizado para
 ## :mortar_board: Orientadores
 
 Prof. Mestre Amaury B. André
+
 Prof. Mestre Mateus Locci
 
 
