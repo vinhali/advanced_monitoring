@@ -13,9 +13,9 @@ O projeto tem como core de desenvolvimento a monitorção de infraesturtura (ser
 Componentes| Dados  |
 ---------- | ------ |
 | CPU | total/livre/uso/etc |
-| Memória | (total/livre/uso/etc |
-| Disco | (total/livre/uso/etc |
-| Processos | (usuário/nativos/críticos/etc |
+| Memória | total/livre/uso/etc |
+| Disco | total/livre/uso/etc |
+| Processos | usuário/nativos/críticos/etc |
 | Redes | outbound/inbound/regras/etc |
 | Banco de dados | query/filesystems/permissões/etc |
 
@@ -31,7 +31,7 @@ Como pode ser lido na documentação oficial do ZABBIX a função forecast utili
 
 Um e-commerce possuí uma determinada demanda durante dias normais, em temporadas como black friday essa demanda não é linear.
 
-[Forecast Zabbix](https://www.zabbix.com/documentation/3.0/pt/manual/config/triggers/prediction),
+[Forecast Zabbix](https://www.zabbix.com/documentation/3.0/pt/manual/config/triggers/prediction)
 
 <h1 align="center"><b> Estrutura do projeto </b></h1>
 
