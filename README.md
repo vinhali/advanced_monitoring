@@ -1,9 +1,9 @@
-## Monitoramento avançado - IA
+## Monitoramento Avançado - IA
 <h1 align="left">
-    <img alt="Advanced Monitoring" src="https://www.sierraexperts.com/documents/2016/04/Infrastructure-Monitoring.png" width="200px" />
+    <img alt="Advanced Monitoring" src="https://www.sierraexperts.com/documents/2016/04/Infrastructure-Monitoring.png" width="300px" />
 </h1>
 
-## :rocket: Sobre o desenvolvedor
+## :people: Sobre o desenvolvedor
 
 Este projeto é o desenvolvimento de um trabalho acadêmico (TCC) realizado para Universidade Paulista (UNIP) por Luis Vinhali, portado do número de matrícula N18202-4, em 2020.
 
