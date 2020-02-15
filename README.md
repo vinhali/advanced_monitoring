@@ -20,6 +20,10 @@
 
 :heavy_check_mark: Fase 8 - Implementação dos dados de previsão com o Ansible
 
+:heavy_check_mark: Fase 9 - Gerar chamados no portal GLPI
+
+:heavy_check_mark: Fase 10 - Plotar todas as informações dentro do Dashboard Grafana
+
 
 ## :memo: Licença
 
