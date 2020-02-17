@@ -6,6 +6,8 @@ Configurações do portal de chamados
 
     Zabbix
         └── Treshold >= Definido
-             └── Incidente
-                  └── Ticket
-                       └── Ansible
+             └── API-ZABBIX
+                  └── Health Check Script
+                       └── Redes Neurais Recorrentes
+                             └── Ansible
+                                  └── Ticket - GLPI
