@@ -4,10 +4,12 @@ Playbook para START da VM
 
 ## Hierarquia
 
-    Script Health Check
-        └── Treshold >= Definido
-             └── Ansible
-                  └── Playbooks
+Zabbix
+    └── Treshold >= Definido
+         └── API-ZABBIX
+              └── Health Check Script
+                   └── Redes Neurais Recorrentes
+                         └── Ansible
 
 ## Estrutura
 
