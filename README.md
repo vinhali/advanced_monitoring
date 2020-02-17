@@ -97,7 +97,7 @@ Esse projeto está sob a licença das ferramentas open-source utilizadas para de
     
 [![Python Version](https://img.shields.io/static/v1?label=python&message=3.7&color=green&logo=python)](https://www.python.org/downloads/release/python-370/)
 [![Ansible Version](https://img.shields.io/static/v1?label=ansible&message=2.7.11&color=green&logo=ansible)](https://docs.ansible.com/ansible/2.7/)
-[![Postgres Version](https://img.shields.io/static/v1?label=postgresql&message=11.0&color=green&logo=postgresql)](https://www.postgresql.org/about/news/1894/)
+[![Postgres Version](https://img.shields.io/static/v1?label=postgresql&message=12.2&color=green&logo=postgresql)](https://www.postgresql.org/docs/12/index.html)
 [![Zabbix Version](https://img.shields.io/static/v1?label=zabbix&message=4.4&color=green&logo=zabbix)](https://www.zabbix.com/whats_new_4_4)
 [![Glpi Version](https://img.shields.io/static/v1?label=glpi&message=4.4&color=green&logo=GLPi)](https://glpi-project.org/glpi-9-4-1/)
 [![Grafana Version](https://img.shields.io/static/v1?label=grafana&message=6.6&color=green&logo=grafana)](https://grafana.com/blog/2020/01/27/grafana-v6.6-released/)
