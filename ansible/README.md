@@ -13,7 +13,12 @@ Playbook para START da VM
 
 ## Estrutura
 
-    Ansible
-       └── playbooks
-            └── roles
-                 └── tasks
+    playbooks
+    |   └── roles
+    |        └── troubleshooting
+    |            └── tasks
+    |                 └── startVM.yml
+    |
+    group_vars
+     └── all.yml
+         
