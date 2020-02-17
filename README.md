@@ -2,6 +2,7 @@
 <h1 align="left">
     <img alt="Advanced Monitoring" src="https://i.imgur.com/HoeiIso.png" width="300px" />
 </h1>
+
 ![](https://img.shields.io/static/v1?label=Last%20Update&message=2020.02.02&color=green&logo=update)
 
 ## :bust_in_silhouette: Sobre o desenvolvedor
