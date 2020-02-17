@@ -55,6 +55,29 @@ Um e-commerce possuí uma determinada demanda durante dias normais, em temporada
     <img alt="Estrutura do projeto" src="https://i.ibb.co/L135GtG/MONITORING-EXPERT.png" width="500px" height="500px"/>
 </h1>
 
+    Zabbix
+    |   └── Coleta os dados
+    |        └── Insere no banco de dados
+    |   
+    Redes Neurais Recorrentes
+    |  ├── Conecta no banco de dados
+    |  |   └── Processamento
+    |  |         └── Transforma em listas os dados
+    |  |
+    |  └── Cálculo
+    |       └── Realiza previsões em cima dos dados   
+    |            └── Insere no banco de dados
+    Ansible
+    |  └── Gera automações
+    |       └── Soluciona incidentes
+    |
+    Glpi
+    | └── Documenta indicentes
+    |      └── Tickets
+    |
+    Grafana
+      └── Dashboard
+           └── Zabbix e GLPI
 
 ## :computer: Fases
 
