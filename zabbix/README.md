@@ -11,3 +11,4 @@ Templates
                    └── Items
                         └── Triggers
                              └── Events
+                                  └── Cadeia de execução do projeto
