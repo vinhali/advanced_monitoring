@@ -18,7 +18,10 @@ Playbook para START da VM
     |        └── troubleshooting
     |            └── tasks
     |                 └── startVM.yml
-    |
     group_vars
-     └── all.yml
-         
+    | └── all.yml
+    |
+    default
+    | └── ansible.cfg
+    inventory
+      └── hosts
