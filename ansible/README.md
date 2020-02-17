@@ -7,8 +7,8 @@ Playbook para START da VM
     Zabbix
         └── Treshold >= Definido
              └── API-ZABBIX
-                  └── Health Check Script
-                       └── Redes Neurais Recorrentes
+                  └── Redes Neurais Recorrentes
+                       └── Health Check Script
                              └── Ansible
 
 ## Estrutura
