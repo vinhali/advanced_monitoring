@@ -90,8 +90,9 @@ Após esse processamento por redes neurais recorrentes utilizando Python como ke
 
 
 ## :memo: Licença
+[Eclipse Public License 2.0 (EPL-2.0)](LICENSE)
 
-Esse projeto está sob a licença das ferramentas open-source utilizadas para desenvolvimento, vide cada licença para implatação do código, não faça apropriação indébita de conteúdo intelectual, ou revenda algo que é gratuito!
+Observacao: Esse utiliza ferramentas open-source utilizadas para desenvolvimento, vide cada licença para implatação do código, não faça apropriação indébita de conteúdo intelectual, ou revenda algo que é gratuito!
 
 ## Tecnologias
     
