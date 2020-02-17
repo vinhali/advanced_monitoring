@@ -9,4 +9,3 @@ Scripts em python
         └── Treshold >= Definido
              └── API-ZABBIX
                   └── Redes Neurais Recorrentes
-                       └── Health Check Script
