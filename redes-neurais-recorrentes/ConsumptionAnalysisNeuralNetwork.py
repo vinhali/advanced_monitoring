@@ -33,7 +33,7 @@ cur = conn.cursor()
 sql = 'SELECT DISTINCT ON (date_trunc(\'hour\', to_timestamp(datecollect, \'YYYY-MM-DD hh24:mi:ss\')::timestamp))  \
 id,                                                                                                                 \
 date_trunc(\'hour\', to_timestamp(datecollect, \'YYYY-MM-DD hh24:mi:ss\')::timestamp) as Time,                       \
-historyvalue::numeric::float,                                                                                       \
+historyvalue::numeric::float,                                                                                         \
 hostname                                                                                                               \
 FROM dataset                                                                                                            \
 WHERE hostname = \'vinhali\'                                                                                             \
