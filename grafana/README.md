@@ -2,7 +2,7 @@
 
 JSON do dashboard
 
-## :rocket: Hierarquia
+## Hierarquia
 
     Zabbix
         └── Treshold >= Definido
