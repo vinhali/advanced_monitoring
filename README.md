@@ -102,3 +102,5 @@ Após esse processamento por redes neurais recorrentes utilizando Python como ke
 [![Zabbix Version](https://img.shields.io/static/v1?label=zabbix&message=4.4&color=green&logo=zabbix)](https://www.zabbix.com/whats_new_4_4)
 [![Glpi Version](https://img.shields.io/static/v1?label=glpi&message=9.4&color=green&logo=GLPi)](https://glpi-project.org/glpi-9-4-1/)
 [![Grafana Version](https://img.shields.io/static/v1?label=grafana&message=6.6&color=green&logo=grafana)](https://grafana.com/blog/2020/01/27/grafana-v6.6-released/)
+
+[![Monitoring Art - Monitoring Artist Logo](https://assets.zabbix.com/img/logo/zabbix_logo_500x131.png)](https://www.zabbix.com/whats_new_4_4)
