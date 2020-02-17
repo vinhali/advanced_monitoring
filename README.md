@@ -2,6 +2,7 @@
 <h1 align="left">
     <img alt="Advanced Monitoring" src="https://i.imgur.com/HoeiIso.png" width="300px" />
 </h1>
+![](https://img.shields.io/static/v1?label=Last%20Update&message=2020.02.02&color=green&logo=update)
 
 ## :bust_in_silhouette: Sobre o desenvolvedor
 
@@ -92,12 +93,10 @@ Após esse processamento por redes neurais recorrentes utilizando Python como ke
 Esse projeto está sob a licença das ferramentas open-source utilizadas para desenvolvimento, vide cada licença para implatação do código, não faça apropriação indébita de conteúdo intelectual, ou revenda algo que é gratuito!
 
 ## Tecnologias
-
-![Zabbix version logo](https://img.shields.io/badge/Zabbix-v4.2+-green.svg?style=flat)
     
 [![Python Version](https://img.shields.io/static/v1?label=python&message=3.7&color=green&logo=python)](https://www.python.org/downloads/release/python-370/)
 [![Ansible Version](https://img.shields.io/static/v1?label=ansible&message=2.7.11&color=green&logo=ansible)](https://docs.ansible.com/ansible/2.7/)
-[![Postgres Version](https://img.shields.io/static/v1?label=postgresql&message=11&color=green&logo=postgresql)](https://www.postgresql.org/about/news/1894/)
+[![Postgres Version](https://img.shields.io/static/v1?label=postgresql&message=11.0&color=green&logo=postgresql)](https://www.postgresql.org/about/news/1894/)
 [![Zabbix Version](https://img.shields.io/static/v1?label=zabbix&message=4.4&color=green&logo=zabbix)](https://www.zabbix.com/whats_new_4_4)
-[![Glpi Version](https://img.shields.io/static/v1?label=glpi&message=4.4&color=green&logo=glpi)](https://glpi-project.org/glpi-9-4-1/)
+[![Glpi Version](https://img.shields.io/static/v1?label=glpi&message=4.4&color=green&logo=GLPi)](https://glpi-project.org/glpi-9-4-1/)
 [![Grafana Version](https://img.shields.io/static/v1?label=grafana&message=6.6&color=green&logo=grafana)](https://grafana.com/blog/2020/01/27/grafana-v6.6-released/)
