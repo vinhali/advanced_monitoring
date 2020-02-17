@@ -2,9 +2,16 @@
 
 Playbook para START da VM
 
+## Hierarquia
+
+    Script Health Check
+        └── Treshold >= Definido
+             └── Ansible
+                  └── Playbooks
+
 ## Estrutura
 
     Ansible
-       └── playbook
+       └── playbooks
             └── roles
                  └── tasks
