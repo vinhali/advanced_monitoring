@@ -90,9 +90,9 @@ Após esse processamento por redes neurais recorrentes utilizando Python como ke
 
 
 ## :memo: Licença
-[Eclipse Public License 2.0 (EPL-2.0)](LICENSE)
+[Eclipse Public License 2.0 (EPL-2.0)](https://github.com/vinhali/advanced_monitoring/blob/master/LICENSE)
 
-Observacao: Esse utiliza ferramentas open-source utilizadas para desenvolvimento, vide cada licença para implatação do código, não faça apropriação indébita de conteúdo intelectual, ou revenda algo que é gratuito!
+<b>Observação:</b> <i>Esse utiliza ferramentas open-source utilizadas para desenvolvimento, vide cada licença para implatação do código, não faça apropriação indébita de conteúdo intelectual, ou revenda algo que é gratuito!</i>
 
 ## Tecnologias
     
