@@ -1,3 +1,3 @@
 ## :rocket: Zabbix
 
-Templates
+Templates para Windows e Linux
