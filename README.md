@@ -1,5 +1,5 @@
 ## Monitoramento Avançado - IA
-![](https://img.shields.io/static/v1?label=Última%atualização&message=2020.02.02&color=green&logo=update)
+![](https://img.shields.io/static/v1?label=Última%20atualização&message=2020.02.02&color=green&logo=update)
 
 <h1 align="left">
     <img alt="Advanced Monitoring" src="https://i.imgur.com/HoeiIso.png" width="300px" />
