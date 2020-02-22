@@ -34,7 +34,7 @@ from ansible.inventory.manager import InventoryManager
 from ansible.vars.manager import VariableManager
 
 # Connection with postgres
-connpostgres = psycopg2.connect("host='127.0.0.1'"
+connpostgres = psycopg2.connect("host='192.168.1.138'"
                         " dbname='networkneural'"
                         " user='postgres'"
 						" password='postgres'")
@@ -52,8 +52,8 @@ else:
 	import datetime
 	now = datetime.datetime.now()
 
-	format = '%Y-%m-%d %H:%M:%S'
-	hourLimit = datetime.strptime(treshold[1], format)
+	#format = '%Y-%m-%d %H:%M:%S'
+	#hourLimit = datetime.strptime(treshold[1], format)
 
 	if now.hour == now.hour and now.minute == now.minute:
 	#if now.hour == hourLimit.hour and now.minute == hourLimit.minute:
@@ -66,11 +66,11 @@ else:
 							ssh_common_args=None, ssh_extra_args=None, sftp_extra_args=None, scp_extra_args=None, become=True,
 							become_method='sudo', become_user='user', verbosity=True, check=False, start_at_task=None)
 
-		inventory = InventoryManager(loader=loader, sources=('/home/userinfra/detector/hosts',))
+		inventory = InventoryManager(loader=loader, sources=('/etc/ansible/hosts',))
 
 		variable_manager = VariableManager(loader=loader, inventory=inventory, version_info=CLI.version_info(gitinfo=False))
 
-		pbex = PlaybookExecutor(playbooks=['/home/userinfra/detector/startvm.yml'], inventory=inventory, variable_manager=variable_manager, loader=loader, passwords=passwords)
+		pbex = PlaybookExecutor(playbooks=['/etc/ansible/playbooks/playbook_start.yml'], inventory=inventory, variable_manager=variable_manager, loader=loader, passwords=passwords)
 
 		results = pbex.run()
 
