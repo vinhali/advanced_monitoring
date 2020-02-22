@@ -1,6 +1,6 @@
 ## :rocket: Scripts em python
 
-- API Zabbix
+- <a href="https://pypi.org/project/py-zabbix/">API Zabbix</a>
 - Health Check
 
 
