@@ -28,15 +28,15 @@ import psycopg2
 #base = pd.read_csv('dados-hardware.csv')
 
 # CRIANDO CONEXAO NO PSQL                                                                                                                                                                                           
-conn = psycopg2.connect(host="192.168.1.250", dbname='networkneural', user='postgres', password='postgres')
+conn = psycopg2.connect(host="127.0.0.1", dbname='networkneural', user='postgres', password='postgres')
 cur = conn.cursor()
-sql = 'SELECT DISTINCT ON (date_trunc(\'hour\', to_timestamp(datecollect, \'YYYY-MM-DD hh24:mi:ss\')::timestamp))  \
+sql = 'SELECT (date_trunc(\'hour\', to_timestamp(datecollect, \'YYYY-MM-DD hh24:mi:ss\')::timestamp))  \
 id,                                                                                                                 \
 date_trunc(\'hour\', to_timestamp(datecollect, \'YYYY-MM-DD hh24:mi:ss\')::timestamp) as Time,                       \
 historyvalue::numeric::float,                                                                                         \
 hostname                                                                                                               \
 FROM dataset                                                                                                            \
-WHERE hostname = \'vinhali\'                                                                                             \
+WHERE hostname = \'client\'                                                                                         \
 ORDER BY date_trunc(\'hour\', to_timestamp(datecollect, \'YYYY-MM-DD hh24:mi:ss\')::timestamp),                           \
 to_timestamp(datecollect, \'YYYY-MM-DD hh24:mi:ss\')::timestamp;                                                           \
 '
@@ -120,7 +120,7 @@ errorLevel = str(mae)
 dataModeling = list(zip(previsoes2, historyoriginal, datecollect, servers))
 
 # CRIANDO CONEXAO NO PSQL                                                                                                                                                                                           
-conn = psycopg2.connect(host="192.168.1.250", dbname='networkneural', user='postgres', password='postgres')
+conn = psycopg2.connect(host="127.0.0.1", dbname='networkneural', user='postgres', password='postgres')
 cur = conn.cursor()
 
 for prev, ori, collect, srv in dataModeling:
@@ -129,3 +129,4 @@ for prev, ori, collect, srv in dataModeling:
 
 cur.close()
 conn.close()
+
