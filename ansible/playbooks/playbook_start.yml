@@ -20,7 +20,10 @@
 #
 #-----------------------------------------------------------------------------------------------------------
 ---
-- hosts: servidores_web
+- name: Starting VM Virtual Box
+  hosts:
+    - all
   tasks:
-  - name: STARTVM
-    command: VBoxManage startvm 'CLIENT2:SRV:LZ:DATA2' --type headless
+    - include_role:
+        name: startVM
+        tasks_from: startWebServer
