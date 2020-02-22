@@ -37,30 +37,34 @@ from ansible.vars.manager import VariableManager
 connpostgres = psycopg2.connect("host='127.0.0.1'"
                         " dbname='networkneural'"
                         " user='postgres'"
-						" password=postgres")
+						" password='postgres'")
 cursorpost = connpostgres.cursor()
 
 cursorpost.execute('SELECT forecastvalue, datecollect, hostname FROM forecastmemoryconsumption WHERE forecastvalue::numeric::int >= 85 LIMIT 1')
 treshold = cursorpost.fetchone()
 
-format = '%Y-%m-%d %H:%M:%S'
-hourLimit = datetime.strptime(treshold[1], format)
+if treshold is None:
+    	
+	print ('its not the time for eating lunch')
 
-import datetime
-now = datetime.datetime.now()
+else:
 
-if treshold[0] != None:
+	import datetime
+	now = datetime.datetime.now()
+
+	format = '%Y-%m-%d %H:%M:%S'
+	hourLimit = datetime.strptime(treshold[1], format)
 
 	if now.hour == now.hour and now.minute == now.minute:
 	#if now.hour == hourLimit.hour and now.minute == hourLimit.minute:
 
 		loader = DataLoader()
-		passwords = dict(vault_pass='ellen')
+		passwords = dict(vault_pass='password')
 
 		context.CLIARGS = ImmutableDict(tags={}, listtags=False, listtasks=False, listhosts=False, syntax=False, connection='ssh',
-		                    module_path=None, forks=100, remote_user='luisvinhali', private_key_file=None,
-		                    ssh_common_args=None, ssh_extra_args=None, sftp_extra_args=None, scp_extra_args=None, become=True,
-		                    become_method='sudo', become_user='luisvinhali', verbosity=True, check=False, start_at_task=None)
+							module_path=None, forks=100, remote_user='user', private_key_file=None,
+							ssh_common_args=None, ssh_extra_args=None, sftp_extra_args=None, scp_extra_args=None, become=True,
+							become_method='sudo', become_user='user', verbosity=True, check=False, start_at_task=None)
 
 		inventory = InventoryManager(loader=loader, sources=('/home/userinfra/detector/hosts',))
 
@@ -71,11 +75,11 @@ if treshold[0] != None:
 		results = pbex.run()
 
 	else:
-		print ('its not the time for eating lunch')
-else:
-	print('error api-ansible')
+    	
+		print('error api-ansible')
 
 
 # ansible servidores -i hosts -u luisvinhali -k -a "VBoxManage startvm 'CLIENT2:SRV:LZ:DATA2' --type headless"
+
 
 
