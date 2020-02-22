@@ -33,10 +33,12 @@ CREATE TABLE dataSet(
     dateinsert timestamp
 );
 
-
 CREATE TABLE ForecastMemoryConsumption(
     id SERIAL,
     date timestamp,
     forecastValue varchar(20),
-    originalValue varchar(20)
+    originalValue varchar(20),
+    datecollect timestamp,
+    hostname varchar(100),
+    levelerror varchar(20)
 );
