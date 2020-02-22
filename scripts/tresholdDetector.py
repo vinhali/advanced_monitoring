@@ -79,7 +79,7 @@ else:
 		print('error api-ansible')
 
 
-# ansible servidores -i hosts -u luisvinhali -k -a "VBoxManage startvm 'CLIENT2:SRV:LZ:DATA2' --type headless"
+# ansible servidores -i hosts -u user-here -k -a "VBoxManage startvm 'CLIENT2:SRV:LZ:DATA2' --type headless"
 
 
 
