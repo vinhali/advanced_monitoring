@@ -26,13 +26,13 @@ from zabbix.api import ZabbixAPI
 import psycopg2
 from datetime import datetime, date, time, timedelta
 
-zapi = ZabbixAPI(url='http://192.168.1.250/zabbix', user='Admin', password='zabbix')
+zapi = ZabbixAPI(url='http://192.168.1.135/zabbix', user='Admin', password='zabbix')
 
 # Connection with postgres
-connpostgres = psycopg2.connect("host='192.168.1.250'"
+connpostgres = psycopg2.connect("host='127.0.0.1'"
                         " dbname='networkneural'"
                         " user='postgres'"
-			" password=postgres")
+			" password='postgres'")
 cursorpost = connpostgres.cursor()
 
 # date now - 1 
@@ -75,3 +75,4 @@ connpostgres.commit()
 cursorpost.close()
 connpostgres.close()
 			
+
