@@ -15,6 +15,7 @@ Prof. Mestre Amaury B. André
 
 Prof. Mestre Mateus Locci
 
+Prof. Mestre Sérgio Nunes
 
 ## :rocket: Sobre o projeto
 
