@@ -2,6 +2,7 @@
 
 Modelo do banco de dados
 
+<img src="https://uploaddeimagens.com.br/images/002/531/325/original/sql.PNG?1583848800"/>
 
 ## Hierarquia
 
