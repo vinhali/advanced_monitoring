@@ -35,7 +35,7 @@ CREATE TABLE "CI" (
 CREATE TABLE "EXPORTZABBIX" (
   "countexportzabbix" SERIAL,
   "id" SERIAL,
-  "fk_exportzabbix" int PRIMARY KEY NOT NULL,
+  "idci" int PRIMARY KEY NOT NULL,
   "hostname" varchar NOT NULL,
   "itemid" varchar NOT NULL,
   "itemname" varchar NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE "EXPORTZABBIX" (
 
 CREATE TABLE "IMPACT" (
   "countimpact" SERIAL,
-  "fk_impact" int PRIMARY KEY NOT NULL,
+  "idci" int PRIMARY KEY NOT NULL,
   "sla" varchar NOT NULL,
   "impact" varchar NOT NULL,
   "estimativemoney" varchar NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE "IMPACT" (
 
 CREATE TABLE "FORECAST" (
   "countforecast" SERIAL,
-  "fk_forecast" int PRIMARY KEY NOT NULL,
+  "idci" int PRIMARY KEY NOT NULL,
   "forecastmemory" varchar NOT NULL,
   "forecastcpu" varchar NOT NULL,
   "forecastcapacity" varchar NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE "FORECAST" (
 
 CREATE TABLE "RELATIONSHIP" (
   "countrelationship" SERIAL,
-  "fk_relationship" int PRIMARY KEY NOT NULL,
+  "idci" int PRIMARY KEY NOT NULL,
   "sector" varchar NOT NULL,
   "location" varchar NOT NULL,
   "type" varchar NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE "RELATIONSHIP" (
 
 CREATE TABLE "DESCRIPTION" (
   "countdescription" SERIAL,
-  "fk_description" int PRIMARY KEY NOT NULL,
+  "idci" int PRIMARY KEY NOT NULL,
   "whoami" varchar NOT NULL,
   "application" varchar NOT NULL,
   "topology" varchar NOT NULL,
@@ -117,13 +117,3 @@ CREATE TABLE "CUSTOMER" (
   "adress" varchar NOT NULL,
   "datecustomer" timestamp NOT NULL
 );
-
-ALTER TABLE "EXPORTZABBIX" ADD FOREIGN KEY ("fk_exportzabbix") REFERENCES "CI" ("idci");
-
-ALTER TABLE "IMPACT" ADD FOREIGN KEY ("fk_impact") REFERENCES "CI" ("idci");
-
-ALTER TABLE "FORECAST" ADD FOREIGN KEY ("fk_forecast") REFERENCES "CI" ("idci");
-
-ALTER TABLE "RELATIONSHIP" ADD FOREIGN KEY ("fk_relationship") REFERENCES "CI" ("idci");
-
-ALTER TABLE "DESCRIPTION" ADD FOREIGN KEY ("fk_description") REFERENCES "CI" ("idci");
