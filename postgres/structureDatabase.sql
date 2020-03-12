@@ -53,7 +53,6 @@ CREATE TABLE "IMPACT" (
   "impact" varchar NOT NULL,
   "estimativemoney" varchar NOT NULL,
   "downtime" varchar NOT NULL,
-  "contract" varchar NOT NULL,
   "felling" varchar NOT NULL,
   "dateimpact" timestamp NOT NULL
 );
@@ -109,7 +108,6 @@ CREATE TABLE "DESCRIPTION" (
 
 CREATE TABLE "CUSTOMER" (
   "countcustomer" SERIAL,
-  "idcustomer" varchar PRIMARY KEY NOT NULL,
   "customer_code" varchar NOT NULL,
   "customer" varchar NOT NULL,
   "segment" varchar NOT NULL,
