@@ -78,7 +78,6 @@ CREATE TABLE "RELATIONSHIP" (
   "journey" varchar NOT NULL,
   "user" varchar NOT NULL,
   "number_thrist" varchar NOT NULL,
-  "officejob" varchar NOT NULL,
   "daterelationship" timestamp NOT NULL
 );
 
