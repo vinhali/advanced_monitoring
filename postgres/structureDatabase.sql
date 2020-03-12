@@ -20,7 +20,7 @@
 --
 -------------------------------------------------------------------------------------------------------------
 
-CREATE DATABASE networkNeural;
+CREATE DATABASE networkneural;
 
 CREATE TABLE "CI" (
   "countci" SERIAL NOT NULL,
