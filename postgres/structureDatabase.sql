@@ -22,6 +22,7 @@
 
 CREATE DATABASE networkneural;
 
+
 CREATE TABLE "CI" (
   "countci" SERIAL NOT NULL,
   "idci" int PRIMARY KEY NOT NULL,
@@ -84,24 +85,24 @@ CREATE TABLE "RELATIONSHIP" (
 CREATE TABLE "DESCRIPTION" (
   "countdescription" SERIAL,
   "idci" int PRIMARY KEY NOT NULL,
-  "whoami" varchar NOT NULL,
+  "whoami" varchar,
   "application" varchar NOT NULL,
   "topology" varchar NOT NULL,
-  "so" varchar NOT NULL,
+  "so" varchar,
   "support" varchar NOT NULL,
-  "architeture" varchar NOT NULL,
-  "capacity" varchar NOT NULL,
-  "memory" varchar NOT NULL,
-  "number_cpu" varchar NOT NULL,
-  "version" varchar NOT NULL,
-  "latency" varchar NOT NULL,
-  "network" varchar NOT NULL,
-  "vpn" varchar NOT NULL,
-  "cpu" varchar NOT NULL,
-  "monitoring" varchar NOT NULL,
-  "inbound" varchar NOT NULL,
-  "outbound" varchar NOT NULL,
-  "uptime" varchar NOT NULL,
+  "architeture" varchar,
+  "capacity" varchar,
+  "memory" varchar,
+  "number_cpu" varchar,
+  "version" varchar,
+  "latency" varchar,
+  "network" varchar,
+  "vpn" varchar,
+  "cpu" varchar,
+  "monitoring" varchar,
+  "inbound" varchar,
+  "outbound" varchar,
+  "uptime" varchar,
   "datedescription" timestamp NOT NULL
 );
 
