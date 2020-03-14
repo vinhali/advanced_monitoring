@@ -25,7 +25,7 @@ CREATE DATABASE networkneural;
 
 CREATE TABLE "CI" (
   "countci" SERIAL NOT NULL,
-  "idci" int PRIMARY KEY NOT NULL,
+  "idci" varchar PRIMARY KEY NOT NULL,
   "ip" varchar NOT NULL,
   "customer" varchar NOT NULL,
   "customer_code" varchar NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE "EXPORTZABBIX" (
 
 CREATE TABLE "IMPACT" (
   "countimpact" SERIAL,
-  "idci" int PRIMARY KEY NOT NULL,
+  "idci" varchar PRIMARY KEY NOT NULL,
   "sla" varchar NOT NULL,
   "impact" varchar NOT NULL,
   "estimativemoney" varchar NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE "FORECAST" (
 
 CREATE TABLE "RELATIONSHIP" (
   "countrelationship" SERIAL,
-  "idci" int PRIMARY KEY NOT NULL,
+  "idci" varchar PRIMARY KEY NOT NULL,
   "sector" varchar NOT NULL,
   "location" varchar NOT NULL,
   "type" varchar NOT NULL,
@@ -84,7 +84,7 @@ CREATE TABLE "RELATIONSHIP" (
 
 CREATE TABLE "DESCRIPTION" (
   "countdescription" SERIAL,
-  "idci" int PRIMARY KEY NOT NULL,
+  "idci" varchar PRIMARY KEY NOT NULL,
   "whoami" varchar,
   "application" varchar NOT NULL,
   "topology" varchar NOT NULL,
