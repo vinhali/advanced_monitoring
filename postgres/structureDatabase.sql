@@ -36,7 +36,7 @@ CREATE TABLE "CI" (
 CREATE TABLE "EXPORTZABBIX" (
   "countexportzabbix" SERIAL,
   "id" SERIAL,
-  "idci" int PRIMARY KEY NOT NULL,
+  "idci" varchar PRIMARY KEY NOT NULL,
   "hostname" varchar NOT NULL,
   "itemid" varchar NOT NULL,
   "itemname" varchar NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE "IMPACT" (
 
 CREATE TABLE "FORECAST" (
   "countforecast" SERIAL,
-  "idci" int PRIMARY KEY NOT NULL,
+  "idci" varchar PRIMARY KEY NOT NULL,
   "forecastmemory" varchar NOT NULL,
   "forecastcpu" varchar NOT NULL,
   "forecastcapacity" varchar NOT NULL,
