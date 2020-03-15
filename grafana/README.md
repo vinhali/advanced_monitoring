@@ -15,14 +15,14 @@ JSON do dashboard
 
 ## Redirecionar porta
 
-sudo setcap 'cap_net_bind_service=+ep' /usr/sbin/grafana-server 
-sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000
+    sudo setcap 'cap_net_bind_service=+ep' /usr/sbin/grafana-server 
+    sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000
 
 ## Liberar acesso no frame
 
-vim /etc/grafana/grafana.ini
+    vim /etc/grafana/grafana.ini
 
-cookie_secure = true
-cookie_smesite =true
-allow_embedding = true
+    cookie_secure = true
+    cookie_smesite =true
+    allow_embedding = true
 
