@@ -78,21 +78,24 @@ def running(IDOPeration, user, frequency, playbook, customer, host):
 		.format(IDOPeration, user,frequency,playbook,customer,host))
 		print("Started      *****************************************************")
 
-		startplaybook()
+		startplaybook(playbook,user,host)
 
 	except:
 
 		failed(IDOPeration, 'FAILED')
 
-def startplaybook():
+def startplaybook(name,user,iventory):
     	
 	try:
 
 		client = paramiko.SSHClient()
 		client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-		client.connect('192.168.1.139', username='ansible', password='ansible')
+		client.connect('192.168.1.139', username='root', password='root')
 
-		client.exec_command('python /etc/ansible/scripts/tresholdDetector.py')
+		stdin, stdout, stderr = client.exec_command('ansible-playbook /etc/ansible/playbooks/'+name+' --extra-vars "host='+iventory+', user='+user+'"', get_pty=True)
+
+		for line in iter(lambda: stdout.readline(2048), ""): 
+			print(line, end="")
 
 		client.close()
 
