@@ -131,5 +131,8 @@ id serial primary key,
 playbook varchar not null,
 technican varchar,
 status varchar not null,
+frequency varchar not null,
+customer varchar not null,
+host varchar not null,
 startdate timestamp
 )
