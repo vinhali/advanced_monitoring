@@ -114,7 +114,11 @@ CREATE TABLE "CUSTOMER" (
   "cnpj" varchar NOT NULL,
   "socialreason" varchar NOT NULL,
   "contact" varchar NOT NULL,
-
+  "telephone" varchar NOT NULL,
+  "adress" varchar NOT NULL,
+  "datecustomer" timestamp NOT NULL
+);
+  
 CREATE TABLE "PLAYBOOK"(
 id serial primary key,
 name varchar not null,
@@ -122,7 +126,10 @@ goal varchar not null,
 date_insert timestamp
 );
 
-  "telephone" varchar NOT NULL,
-  "adress" varchar NOT NULL,
-  "datecustomer" timestamp NOT NULL
-);
+CREATE TABLE "ANSIBLE_HISTORY"(
+id serial primary key,
+playbook varchar not null,
+technican varchar,
+status varchar not null,
+startdate timestamp
+)
