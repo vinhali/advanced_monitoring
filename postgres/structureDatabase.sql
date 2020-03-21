@@ -128,6 +128,7 @@ date_insert timestamp
 
 CREATE TABLE "ANSIBLE_HISTORY"(
 id serial primary key,
+idoPeration int not null
 playbook varchar not null,
 technican varchar,
 status varchar not null,
