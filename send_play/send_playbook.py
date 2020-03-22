@@ -19,7 +19,7 @@ def connpg(query):
 	cursorpost.close
 	connpostgres.close()
 
-def header(user, frequency, playbook, customer, host):
+def header(user, frequency, playbook, customer, host, pwd):
 	print("******************************************************************")
 	print('''Starting with config:
 	User: {0}
@@ -28,7 +28,7 @@ def header(user, frequency, playbook, customer, host):
 	Customer: {3}
 	Host: {4}'''.format(user,frequency,playbook,customer,host))
 	print("******************************************************************")
-	running(IDOPeration, user, frequency, playbook, customer, host)
+	running(IDOPeration, user, frequency, playbook, customer, host, pwd)
 
 def passed(IDOPeration, status):
 
@@ -66,7 +66,7 @@ def failed(IDOPeration, status):
 		print("End script   *****************************************************")
 		print("******************************************************************")
 
-def running(IDOPeration, user, frequency, playbook, customer, host):
+def running(IDOPeration, user, frequency, playbook, customer, host, pwd):
 
 	print("Start play   *****************************************************")
 
@@ -78,13 +78,13 @@ def running(IDOPeration, user, frequency, playbook, customer, host):
 		.format(IDOPeration, user,frequency,playbook,customer,host))
 		print("Started      *****************************************************")
 
-		startplaybook(playbook,user,host)
+		startplaybook(playbook,user,host, pwd)
 
 	except:
 
 		failed(IDOPeration, 'FAILED')
 
-def startplaybook(name,user,iventory):
+def startplaybook(name,user,iventory, pwd):
     	
 	try:
 
@@ -92,7 +92,7 @@ def startplaybook(name,user,iventory):
 		client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 		client.connect('192.168.1.139', username='root', password='root')
 
-		stdin, stdout, stderr = client.exec_command('ansible-playbook /etc/ansible/playbooks/'+name+' --extra-vars "host='+iventory+', user='+user+'"', get_pty=True)
+		stdin, stdout, stderr = client.exec_command('ansible-playbook /etc/ansible/playbooks/'+name+' -e "ansible_user='+user+' ansible_password='+pwd+'" --extra-vars "host='+iventory+'"', get_pty=True)
 
 		for line in iter(lambda: stdout.readline(2048), ""): 
 			print(line, end="")
@@ -107,4 +107,4 @@ def startplaybook(name,user,iventory):
 
 if __name__ == "__main__":
     	
-    header(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5])
+    header(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5],sys.argv[6])
