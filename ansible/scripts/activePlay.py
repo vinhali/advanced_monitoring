@@ -95,7 +95,7 @@ class ModuleResultsCollector():
             os.system('''php /etc/ansible/open_tickets/open.php eventhost="{}" event="OPEN" state="FAILED" hostproblemid=0 lasthostproblemid=0 servico="{}" triggerid="{}" eventansible="Dynamic - AUTO RESOLVED"'''
             .format(affected_host,namePlay,IDOPeration))
             
-            print("Created ticket for failed in playbook[ok]")
+            print("Created ticket for failed in playbook [ok]")
             
 
         except Exception as e:
