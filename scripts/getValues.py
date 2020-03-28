@@ -17,7 +17,7 @@
 # Author:       Luis Henrique Vinhali <vinhali@outlook.com>
 #
 # Changelog:
-# 1.0.0 2020-03-28      Inital version
+# 1.0.0 02-02-2020      Inital version
 #
 #-----------------------------------------------------------------------------------------------------------
 
@@ -30,13 +30,13 @@ try:
     import sys
     import psycopg2
 except ImportError as e:
-    print("[INFO] Error import caused by: {}".format(e))
+    print("[ALERT] Error import caused by: {}".format(e))
     sys.exit()
 
 class exportDataAPIzabbix():
 
     print("***********************************************************************************")
-    print("Script started date {}".format(date.today()))
+    print("[INFO] Script started date {}".format(date.today()))
 
     def loginAPI(self, urlZB, userZB, passZB, groupHost, itemZB, rangeDay, adressDB, dbName, userDB, passDB, tblName):
 
@@ -76,8 +76,8 @@ class exportDataAPIzabbix():
 
         except Exception as e:
 
-            print("[INFO] API not connected")
-            print("Zabbix URL Error: {}".format(e))
+            print("[ALERT] API not connected")
+            print("[ALERT] Zabbix URL Error: {}".format(e))
             print("***********************************************************************************")
             sys.exit()
 
@@ -110,7 +110,7 @@ class exportDataAPIzabbix():
 
         except Exception as e:
 
-            print("Error insert data caused by: {}".format(e))
+            print("[ALERT] Error insert data caused by: {}".format(e))
             print("***********************************************************************************")
             sys.exit()
 
@@ -162,17 +162,13 @@ class exportDataAPIzabbix():
 
         except Exception as e:
 
-            print("Error collect API caused by: {}".format(e))
+            print("[ALERT] Error collect API caused by: {}".format(e))
             sys.exit()
             print("***********************************************************************************")
 
 if __name__ == "__main__":
     
     flow = exportDataAPIzabbix()
-    #flow.loginAPI('http://192.168.1.135/zabbix', 'Admin', 'zabbix', 
-    #            'Servers Production', 'Memória em uso (Porcentagem)', 0,
-    #            '127.0.0.1', 'networkneural', 'postgres', 'postgres', 'MEMORYEXPORTZB')
-
     flow.loginAPI(*sys.argv[1:12]) # Send external command python
 
 # API respective values:
