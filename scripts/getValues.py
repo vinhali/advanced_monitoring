@@ -57,12 +57,12 @@ class exportDataAPIzabbix():
 
         try:
 
-            # Method use API
-            zapi = ZabbixAPI(url=urlZB, user=userZB, password=passZB)
             # Test connection with API
             requestZB = requests.post(url, data=json.dumps(payload), headers=headers)
             resultZB = requestZB.json()
             json.dumps(resultZB)
+            # Method use API
+            zapi = ZabbixAPI(url=urlZB, user=userZB, password=passZB)
 
             print("[INFO] API connected")
             print("[INFO] jsonrpc: {} && result: {}".format(resultZB['jsonrpc'],resultZB['result']))
