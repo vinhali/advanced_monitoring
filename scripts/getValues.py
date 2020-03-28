@@ -164,8 +164,7 @@ if __name__ == "__main__":
                 'Servers Production', 'Memória em uso (Porcentagem)', 0,
                 '127.0.0.1', 'networkneural', 'postgres', 'postgres', 'MEMORYEXPORTZB')
 
-    #flow.loginAPI(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],
-    #sys.argv[5],sys.argv[6],sys.argv[7],sys.argv[8],sys.argv[9],sys.argv[10],sys.argv[11]) # Send external command python
+    #flow.loginAPI(*sys.argv[1:12]) # Send external command python# Send external command python
 
 # API respective values:
 # Value1 1 --> URL ZABBIX
