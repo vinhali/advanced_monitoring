@@ -18,7 +18,7 @@
 # Author:       Luis Henrique Vinhali <vinhali@outlook.com>
 #
 # Changelog:
-# 1.0.0 02-02-2020      Inital version
+# 1.0.0 2020-03-28      Inital version
 #
 #-----------------------------------------------------------------------------------------------------------
 
