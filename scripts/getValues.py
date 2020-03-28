@@ -67,8 +67,8 @@ class exportDataAPIzabbix():
             print("[INFO] API connected")
             print("[INFO] jsonrpc: {} && result: {}".format(resultZB['jsonrpc'],resultZB['result']))
 
-            sendConnection = exportDataAPIzabbix()
-            return sendConnection.collectAPI(zapi, groupHost, itemZB, rangeDay, adressDB, dbName, userDB, passDB)
+            startCollect = exportDataAPIzabbix()
+            return startCollect.collectAPI(zapi, groupHost, itemZB, rangeDay, adressDB, dbName, userDB, passDB)
 
         except Exception as e:
 
