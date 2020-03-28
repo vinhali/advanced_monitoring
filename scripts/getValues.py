@@ -21,14 +21,16 @@
 # 1.0.0 02-02-2020      Inital version
 #
 #-----------------------------------------------------------------------------------------------------------
-
-from zabbix.api import ZabbixAPI
-from datetime import datetime, date, time, timedelta
-import requests
-import json
-import subprocess
-import sys
-import psycopg2
+try:
+    from zabbix.api import ZabbixAPI
+    from datetime import datetime, date, time, timedelta
+    import requests
+    import json
+    import subprocess
+    import sys
+    import psycopg2
+except ImportError as e:
+    print("[INFO] Error import caused by: {}".format(e))
 
 class exportDataAPIzabbix():
 
@@ -62,7 +64,7 @@ class exportDataAPIzabbix():
             resultZB = requestZB.json()
             json.dumps(resultZB)
 
-            print("[INFO] API CONNECTED")
+            print("[INFO] API connected")
             print("[INFO] jsonrpc: {} && result: {}".format(resultZB['jsonrpc'],resultZB['result']))
 
             sendConnection = exportDataAPIzabbix()
@@ -70,7 +72,7 @@ class exportDataAPIzabbix():
 
         except Exception as e:
 
-            print("[INFO] API NOT CONNECTED")
+            print("[INFO] API not connected")
             print("Zabbix URL Error: {}".format(e))
 
             sys.exit()
