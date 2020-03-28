@@ -31,10 +31,11 @@ try:
     import psycopg2
 except ImportError as e:
     print("[INFO] Error import caused by: {}".format(e))
+    sys.exit()
 
 class exportDataAPIzabbix():
 
-    def loginAPI(self, urlZB, userZB, passZB, groupHost, itemZB, rangeDay, adressDB, dbName, userDB, passDB):
+    def loginAPI(self, urlZB, userZB, passZB, groupHost, itemZB, rangeDay, adressDB, dbName, userDB, passDB, tblName):
 
         # Header API
         ZABIX_ROOT = urlZB
@@ -57,40 +58,40 @@ class exportDataAPIzabbix():
 
         try:
 
+            # Method use API
+            zapi = ZabbixAPI(url=urlZB, user=userZB, password=passZB)
             # Test connection with API
             requestZB = requests.post(url, data=json.dumps(payload), headers=headers)
             resultZB = requestZB.json()
             json.dumps(resultZB)
-            # Method use API
-            zapi = ZabbixAPI(url=urlZB, user=userZB, password=passZB)
 
-            print("[INFO] API connected")
+            print("[INFO] API CONNECTED")
             print("[INFO] jsonrpc: {} && result: {}".format(resultZB['jsonrpc'],resultZB['result']))
 
-            startCollect = exportDataAPIzabbix()
-            return startCollect.collectAPI(zapi, groupHost, itemZB, rangeDay, adressDB, dbName, userDB, passDB)
+            sendConnection = exportDataAPIzabbix()
+            return sendConnection.collectAPI(zapi, groupHost, itemZB, rangeDay, adressDB, dbName, userDB, passDB, tblName)
 
         except Exception as e:
 
             print("[INFO] API not connected")
             print("Zabbix URL Error: {}".format(e))
-
             sys.exit()
 
-    def connectPGSQL(self,host,itemid,itemname,itemkey,historyvalue,clock, adressDB, dbName, userDB, passDB):
+    def connectPGSQL(self,host,itemid,itemname,itemkey,historyvalue,clock,adressDB, dbName, userDB, passDB, tblName):
 
         try:
 
-            # Create connection adressDB, dbName, userDB, passDB
-            connpostgres = psycopg2.connect("host='{}'"
-                                    " dbname='{}'"
-                                    " user='{}'"
-                        " password='{}'".format(adressDB, dbName, userDB, passDB))
+            # Create connection
+            connpostgres = psycopg2.connect("host='{0}'"
+                                    " dbname='{1}'"
+                                    " user='{2}'"
+                        " password='{3}'".format(adressDB, dbName, userDB, passDB))
             cursorpost = connpostgres.cursor()
             # Insert data collect
-            cursorpost.execute('''INSERT INTO "MEMORYEXPORTZB" (hostname,itemid,itemname,
-            itemkey,historyvalue,datecollect,dateinsert) 
-            VALUES ('{}', '{}', '{}', '{}', '{}', \''''.format(
+            cursorpost.execute('''INSERT INTO "{0}" (hostname,itemid,itemname,
+            itemkey,historyvalue,datecollect,dateinsert)
+            VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', \''''.format(
+            tblName,
             host,
             itemid,
             itemname,
@@ -108,7 +109,7 @@ class exportDataAPIzabbix():
             print("Error insert data caused by: {}".format(e))
             sys.exit()
 
-    def collectAPI(self, zapi, groupHost, itemZB, rangeDay, adressDB, dbName, userDB, passDB):
+    def collectAPI(self, zapi, groupHost, itemZB, rangeDay,adressDB, dbName, userDB, passDB, tblName):
 
         try:
 
@@ -136,14 +137,14 @@ class exportDataAPIzabbix():
                 # for loop - for future fuzzy search, otherwise don't loop and use items[0] 
                 for item in items:
                     # Get item values range or all
-                    values = zapi.history.get(itemids=item['itemid'], time_from=startTimestamp, time_till=endTimestamp, history=item['value_type'])
-                    #values = zapi.history.get(itemids=item['itemid'], history=item['value_type'])
+                    #values = zapi.history.get(itemids=item['itemid'], time_from=startTimestamp, time_till=endTimestamp, history=item['value_type'])
+                    values = zapi.history.get(itemids=item['itemid'], history=item['value_type'])
 
                     for historyValue in values:
                         #print(host['host'],item['itemid'],item['name'],item['key_'],historyValue['value'],str(datetime.utcfromtimestamp(int(historyValue['clock'])).strftime('%Y-%m-%d %H:%M:%S')))
                         # insert values in database
                         insertData = exportDataAPIzabbix()
-                        insertData.connectPGSQL(host['host'],item['itemid'],item['name'],item['key_'],historyValue['value'],historyValue['clock'], adressDB, dbName, userDB, passDB)
+                        insertData.connectPGSQL(host['host'],item['itemid'],item['name'],item['key_'],historyValue['value'],historyValue['clock'],adressDB, dbName, userDB, passDB, tblName)
 
             print("[INFO] Values ​​collected by the API")        
             print("[INFO] Values ​​entered in the database")
@@ -153,18 +154,18 @@ class exportDataAPIzabbix():
 
         except Exception as e:
 
-            print("Error collect API caused by: {}".format(e))
+            print("Error insert data caused by: {}".format(e))
             sys.exit()
 
 if __name__ == "__main__":
     
     flow = exportDataAPIzabbix()
     flow.loginAPI('http://192.168.1.135/zabbix', 'Admin', 'zabbix', 
-                'Servers Production', 'Memória em uso (Porcentagem)', 
-                0, '127.0.0.1', 'networkneural', 'postgres', 'postgres')
+                'Servers Production', 'Memória em uso (Porcentagem)', 0,
+                '127.0.0.1', 'networkneural', 'postgres', 'postgres', 'MEMORYEXPORTZB')
 
     #flow.loginAPI(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],
-    #sys.argv[5],sys.argv[6],sys.argv[7],sys.argv[8],sys.argv[9],sys.argv[10]) # Send external command python
+    #sys.argv[5],sys.argv[6],sys.argv[7],sys.argv[8],sys.argv[9],sys.argv[10],sys.argv[11]) # Send external command python
 
 # API respective values:
 # Value1 1 --> URL ZABBIX
@@ -177,3 +178,4 @@ if __name__ == "__main__":
 # Value1 8 --> NAME DATABASE
 # Value1 9 --> USER DATABASE
 # Value1 10 --> PASSWORD DATABASE
+# Value1 11 --> TABLE DATABASE
