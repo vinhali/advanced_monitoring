@@ -137,3 +137,13 @@ customer varchar not null,
 host varchar not null,
 startdate timestamp
 )
+
+create table "MEMORYEXPORTZB"(
+hostname varchar,
+itemid int,
+itemname varchar,
+itemkey int,
+historyvalue real,
+datecollect timestamp,
+dateinsert timestamp
+);
