@@ -21,6 +21,7 @@
 # 1.0.0 02-02-2020      Inital version
 #
 #-----------------------------------------------------------------------------------------------------------
+
 try:
     from zabbix.api import ZabbixAPI
     from datetime import datetime, date, time, timedelta
@@ -34,6 +35,9 @@ except ImportError as e:
     sys.exit()
 
 class exportDataAPIzabbix():
+
+    print("***********************************************************************************")
+    print("Script started date {}".format(date.today()))
 
     def loginAPI(self, urlZB, userZB, passZB, groupHost, itemZB, rangeDay, adressDB, dbName, userDB, passDB, tblName):
 
@@ -65,7 +69,7 @@ class exportDataAPIzabbix():
             resultZB = requestZB.json()
             json.dumps(resultZB)
 
-            print("[INFO] API CONNECTED")
+            print("[INFO] API connected")
             print("[INFO] jsonrpc: {} && result: {}".format(resultZB['jsonrpc'],resultZB['result']))
 
             sendConnection = exportDataAPIzabbix()
@@ -75,6 +79,7 @@ class exportDataAPIzabbix():
 
             print("[INFO] API not connected")
             print("Zabbix URL Error: {}".format(e))
+            print("***********************************************************************************")
             sys.exit()
 
     def connectPGSQL(self,host,itemid,itemname,itemkey,historyvalue,clock,adressDB, dbName, userDB, passDB, tblName):
@@ -107,6 +112,7 @@ class exportDataAPIzabbix():
         except Exception as e:
 
             print("Error insert data caused by: {}".format(e))
+            print("***********************************************************************************")
             sys.exit()
 
     def collectAPI(self, zapi, groupHost, itemZB, rangeDay,adressDB, dbName, userDB, passDB, tblName):
@@ -153,11 +159,13 @@ class exportDataAPIzabbix():
             print("[INFO] End connection PGSQL")
             print("[INFO] End script")
             print("[STATUS] Everything happened successfully [ok]")
+            print("***********************************************************************************")
 
         except Exception as e:
 
             print("Error collect API caused by: {}".format(e))
             sys.exit()
+            print("***********************************************************************************")
 
 if __name__ == "__main__":
     
