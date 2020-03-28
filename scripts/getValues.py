@@ -114,7 +114,7 @@ class exportDataAPIzabbix():
         try:
 
             # date now - 1 
-            d = date.today() - timedelta(days = rangeDay)
+            d = date.today() - timedelta(days = int(rangeDay))
 
             # date + 0:00
             startTimestamp = int(datetime.combine(d, time(0, 0)).timestamp())
@@ -137,8 +137,8 @@ class exportDataAPIzabbix():
                 # for loop - for future fuzzy search, otherwise don't loop and use items[0] 
                 for item in items:
                     # Get item values range or all
-                    #values = zapi.history.get(itemids=item['itemid'], time_from=startTimestamp, time_till=endTimestamp, history=item['value_type'])
-                    values = zapi.history.get(itemids=item['itemid'], history=item['value_type'])
+                    values = zapi.history.get(itemids=item['itemid'], time_from=startTimestamp, time_till=endTimestamp, history=item['value_type'])
+                    #values = zapi.history.get(itemids=item['itemid'], history=item['value_type'])
 
                     for historyValue in values:
                         #print(host['host'],item['itemid'],item['name'],item['key_'],historyValue['value'],str(datetime.utcfromtimestamp(int(historyValue['clock'])).strftime('%Y-%m-%d %H:%M:%S')))
@@ -154,17 +154,17 @@ class exportDataAPIzabbix():
 
         except Exception as e:
 
-            print("Error insert data caused by: {}".format(e))
+            print("Error collect API caused by: {}".format(e))
             sys.exit()
 
 if __name__ == "__main__":
     
     flow = exportDataAPIzabbix()
-    flow.loginAPI('http://192.168.1.135/zabbix', 'Admin', 'zabbix', 
-                'Servers Production', 'Memória em uso (Porcentagem)', 0,
-                '127.0.0.1', 'networkneural', 'postgres', 'postgres', 'MEMORYEXPORTZB')
+    #flow.loginAPI('http://192.168.1.135/zabbix', 'Admin', 'zabbix', 
+    #            'Servers Production', 'Memória em uso (Porcentagem)', 0,
+    #            '127.0.0.1', 'networkneural', 'postgres', 'postgres', 'MEMORYEXPORTZB')
 
-    #flow.loginAPI(*sys.argv[1:12]) # Send external command python# Send external command python
+    flow.loginAPI(*sys.argv[1:12]) # Send external command python
 
 # API respective values:
 # Value1 1 --> URL ZABBIX
