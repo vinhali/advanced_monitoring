@@ -66,7 +66,7 @@ class exportDataAPIzabbix():
             print("[INFO] jsonrpc: {} && result: {}".format(resultZB['jsonrpc'],resultZB['result']))
 
             sendConnection = exportDataAPIzabbix()
-            return sendConnection.collectAPI(zapi, groupHost, itemZB, rangeDay)
+            return sendConnection.collectAPI(zapi, groupHost, itemZB, rangeDay, adressDB, dbName, userDB, passDB)
 
         except Exception as e:
 
@@ -106,7 +106,7 @@ class exportDataAPIzabbix():
             print("Error insert data caused by: {}".format(e))
             sys.exit()
 
-    def collectAPI(self, zapi, groupHost, itemZB, rangeDay):
+    def collectAPI(self, zapi, groupHost, itemZB, rangeDay, adressDB, dbName, userDB, passDB):
 
         try:
 
