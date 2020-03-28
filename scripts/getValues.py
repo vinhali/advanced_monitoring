@@ -23,56 +23,146 @@
 #-----------------------------------------------------------------------------------------------------------
 
 from zabbix.api import ZabbixAPI
-import psycopg2
 from datetime import datetime, date, time, timedelta
+import requests
+import json
+import subprocess
+import sys
+import psycopg2
 
-zapi = ZabbixAPI(url='http://192.168.1.135/zabbix', user='Admin', password='zabbix')
+class exportDataAPIzabbix():
 
-# Connection with postgres
-connpostgres = psycopg2.connect("host='127.0.0.1'"
-                        " dbname='networkneural'"
-                        " user='postgres'"
-			" password='postgres'")
-cursorpost = connpostgres.cursor()
+    def loginAPI(self, urlZB, userZB, passZB, groupHost, itemZB, rangeDay):
 
-# date now - 1 
-d = date.today() - timedelta(days = 0)
+        # Header API
+        ZABIX_ROOT = urlZB
+        url = ZABIX_ROOT + '/api_jsonrpc.php'
 
-# date + 0:00
-startTimestamp = int(datetime.combine(d, time(0, 0)).timestamp())
-# date + 23:59
-endTimestamp = int(datetime.combine(d, time(23, 59)).timestamp())
+        payload = {
+            "jsonrpc" : "2.0",
+            "method" : "user.login",
+            "params": {
+            'user': userZB,
+            'password': passZB,
+            },
+            "auth" : None,
+            "id" : 0,
+        }
 
-groupFilter = {'name': 'Servers Production'}
-itemFilter = {'name': 'Memória em uso (Porcentagem)'}
+        headers = {
+            'content-type': 'application/json',
+        }
 
-# Get the hostgroup id by its name 
-hostgroups = zapi.hostgroup.get(filter=groupFilter, output=['groupids', 'name'])
+        try:
 
-# Get the hosts of the hostgroup by hostgroup id
-hosts = zapi.host.get(groupids=hostgroups[0]['groupid'])
+            # Method use API
+            zapi = ZabbixAPI(url=urlZB, user=userZB, password=passZB)
+            # Test connection with API
+            requestZB = requests.post(url, data=json.dumps(payload), headers=headers)
+            resultZB = requestZB.json()
+            json.dumps(resultZB)
 
-for host in hosts:
-    # Get the item info (not the values!) by item name AND host id
-    items = zapi.item.get(filter=itemFilter, host=host['host'], output='extend', selectHosts=['host', 'name'])
+            print("[INFO] API CONNECTED")
+            print("[INFO] jsonrpc: {} && result: {}".format(resultZB['jsonrpc'],resultZB['result']))
 
-    # for loop - for future fuzzy search, otherwise don't loop and use items[0] 
-    for item in items:
-        # Get item values
-        values = zapi.history.get(itemids=item['itemid'], time_from=startTimestamp, time_till=endTimestamp, history=item['value_type'])
-        # print history values
-        for historyValue in values:
-            cursorpost.execute("INSERT INTO dataset (hostname,itemid,itemname,itemkey,historyvalue,datecollect,dateinsert) VALUES ('{}', '{}', '{}', '{}', '{}', \'"
-                  .format(
-                host['host'],
-                item['itemid'],
-                item['name'],
-                item['key_'],
-                historyValue['value'])
-                +str(datetime.utcfromtimestamp(int(historyValue['clock'])).strftime('%Y-%m-%d %H:%M:%S'))+"\', current_timestamp);")
-            
-connpostgres.commit()
-cursorpost.close()
-connpostgres.close()
-			
+            sendConnection = exportDataAPIzabbix()
+            return sendConnection.collectAPI(zapi, groupHost, itemZB, rangeDay)
 
+        except Exception as e:
+
+            print("[INFO] API NOT CONNECTED")
+            print("Zabbix URL Error: {}".format(e))
+
+            sys.exit()
+
+    def connectPGSQL(self,host,itemid,itemname,itemkey,historyvalue,clock):
+
+        try:
+
+            # Create connection
+            connpostgres = psycopg2.connect("host='127.0.0.1'"
+                                    " dbname='networkneural'"
+                                    " user='postgres'"
+                        " password='postgres'")
+            cursorpost = connpostgres.cursor()
+            # Insert data collect
+            cursorpost.execute('''INSERT INTO "MEMORYEXPORTZB" (hostname,itemid,itemname,
+            itemkey,historyvalue,datecollect,dateinsert) 
+            VALUES ('{}', '{}', '{}', '{}', '{}', \''''.format(
+            host,
+            itemid,
+            itemname,
+            itemkey,
+            historyvalue)
+            +str(datetime.utcfromtimestamp(int(clock)).strftime('%Y-%m-%d %H:%M:%S'))+
+            "\',current_timestamp);")
+            # End connections in pgsql
+            connpostgres.commit()
+            cursorpost.close()
+            connpostgres.close()
+
+        except Exception as e:
+
+            print("Error insert data caused by: {}".format(e))
+
+    def collectAPI(self, zapi, groupHost, itemZB, rangeDay):
+
+        try:
+
+            # date now - 1 
+            d = date.today() - timedelta(days = rangeDay)
+
+            # date + 0:00
+            startTimestamp = int(datetime.combine(d, time(0, 0)).timestamp())
+            # date + 23:59
+            endTimestamp = int(datetime.combine(d, time(23, 59)).timestamp())
+
+            groupFilter = {'name': groupHost}
+            itemFilter = {'name': itemZB}
+
+            # Get the hostgroup id by its name 
+            hostgroups = zapi.hostgroup.get(filter=groupFilter, output=['groupids', 'name'])
+
+            # Get the hosts of the hostgroup by hostgroup id
+            hosts = zapi.host.get(groupids=hostgroups[0]['groupid'])
+
+            for host in hosts:
+                # Get the item info (not the values!) by item name AND host id
+                items = zapi.item.get(filter=itemFilter, host=host['host'], output='extend', selectHosts=['host', 'name'])
+
+                # for loop - for future fuzzy search, otherwise don't loop and use items[0] 
+                for item in items:
+                    # Get item values range or all
+                    values = zapi.history.get(itemids=item['itemid'], time_from=startTimestamp, time_till=endTimestamp, history=item['value_type'])
+                    #values = zapi.history.get(itemids=item['itemid'], history=item['value_type'])
+
+                    for historyValue in values:
+                        #print(host['host'],item['itemid'],item['name'],item['key_'],historyValue['value'],str(datetime.utcfromtimestamp(int(historyValue['clock'])).strftime('%Y-%m-%d %H:%M:%S')))
+                        # insert values in database
+                        insertData = exportDataAPIzabbix()
+                        insertData.connectPGSQL(host['host'],item['itemid'],item['name'],item['key_'],historyValue['value'],historyValue['clock'])
+
+            print("[INFO] Values ​​collected by the API")        
+            print("[INFO] Values ​​entered in the database")
+            print("[INFO] End connection PGSQL")
+            print("[INFO] End script")
+            print("[STATUS] Everything happened successfully [ok]")
+
+        except Exception as e:
+
+            print("Error insert data caused by: {}".format(e))
+
+if __name__ == "__main__":
+    
+    flow = exportDataAPIzabbix()
+    flow.loginAPI('http://192.168.1.135/zabbix', 'Admin', 'zabbix', 
+                'Servers Production', 'Memória em uso (Porcentagem)', 0)
+    #flow.loginAPI(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5],sys.argv[6]) # Send external command python
+
+# login API respective values:
+# Value1 1 --> URL ZABBIX
+# Value1 2 --> USER ZABBIX
+# Value1 3 --> PASSWORD ZABBIX
+# Value1 4 --> GROUP OF HOSTS ZABBIX FOR COLLECT
+# Value1 5 --> ITEM ZABBIX FOR COLLECT
+# Value1 6 --> RANGE OF COLLECT (DAY) 0 = date actual
