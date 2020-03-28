@@ -114,12 +114,15 @@ class exportDataAPIzabbix():
         try:
 
             # date now - 1 
-            d = date.today() - timedelta(days = int(rangeDay))
+            dayStart = date.today() - timedelta(days = int(rangeDay))
+            dayEnd = date.today()
 
             # date + 0:00
-            startTimestamp = int(datetime.combine(d, time(0, 0)).timestamp())
+            startTimestamp = int(datetime.combine(dayStart, time(0, 0)).timestamp())
+            print("[INFO] Start date for collect: {}".format(datetime.combine(dayStart, time(0, 0))))
             # date + 23:59
-            endTimestamp = int(datetime.combine(d, time(23, 59)).timestamp())
+            endTimestamp = int(datetime.combine(dayEnd, time(23, 59)).timestamp())
+            print("[INFO] End date for collect: {}".format(datetime.combine(dayEnd, time(23, 59))))
 
             groupFilter = {'name': groupHost}
             itemFilter = {'name': itemZB}
@@ -138,7 +141,6 @@ class exportDataAPIzabbix():
                 for item in items:
                     # Get item values range or all
                     values = zapi.history.get(itemids=item['itemid'], time_from=startTimestamp, time_till=endTimestamp, history=item['value_type'])
-                    #values = zapi.history.get(itemids=item['itemid'], history=item['value_type'])
 
                     for historyValue in values:
                         #print(host['host'],item['itemid'],item['name'],item['key_'],historyValue['value'],str(datetime.utcfromtimestamp(int(historyValue['clock'])).strftime('%Y-%m-%d %H:%M:%S')))
