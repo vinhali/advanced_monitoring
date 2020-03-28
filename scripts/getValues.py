@@ -172,14 +172,14 @@ if __name__ == "__main__":
     flow.loginAPI(*sys.argv[1:12]) # Send external command python
 
 # API respective values:
-# Value1 1 --> URL ZABBIX
-# Value1 2 --> USER ZABBIX
-# Value1 3 --> PASSWORD ZABBIX
-# Value1 4 --> GROUP OF HOSTS ZABBIX FOR COLLECT
-# Value1 5 --> ITEM ZABBIX FOR COLLECT
-# Value1 6 --> RANGE OF COLLECT (DAY) 0 = date actual
-# Value1 7 --> IP DATABASE
-# Value1 8 --> NAME DATABASE
-# Value1 9 --> USER DATABASE
-# Value1 10 --> PASSWORD DATABASE
-# Value1 11 --> TABLE DATABASE
+# Value 1 --> URL ZABBIX
+# Value 2 --> USER ZABBIX
+# Value 3 --> PASSWORD ZABBIX
+# Value 4 --> GROUP OF HOSTS ZABBIX FOR COLLECT
+# Value 5 --> ITEM ZABBIX FOR COLLECT
+# Value 6 --> RANGE OF COLLECT (DAY) 0 = date actual
+# Value 7 --> IP DATABASE
+# Value 8 --> NAME DATABASE
+# Value 9 --> USER DATABASE
+# Value 10 --> PASSWORD DATABASE
+# Value 11 --> TABLE DATABASE
