@@ -173,3 +173,7 @@ if __name__ == "__main__":
 # Value1 4 --> GROUP OF HOSTS ZABBIX FOR COLLECT
 # Value1 5 --> ITEM ZABBIX FOR COLLECT
 # Value1 6 --> RANGE OF COLLECT (DAY) 0 = date actual
+# Value1 7 --> IP DATABASE
+# Value1 8 --> NAME DATABASE
+# Value1 9 --> USER DATABASE
+# Value1 10 --> PASSWORD DATABASE
