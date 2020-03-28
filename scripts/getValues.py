@@ -32,7 +32,7 @@ import psycopg2
 
 class exportDataAPIzabbix():
 
-    def loginAPI(self, urlZB, userZB, passZB, groupHost, itemZB, rangeDay):
+    def loginAPI(self, urlZB, userZB, passZB, groupHost, itemZB, rangeDay, adressDB, dbName, userDB, passDB):
 
         # Header API
         ZABIX_ROOT = urlZB
@@ -75,15 +75,15 @@ class exportDataAPIzabbix():
 
             sys.exit()
 
-    def connectPGSQL(self,host,itemid,itemname,itemkey,historyvalue,clock):
+    def connectPGSQL(self,host,itemid,itemname,itemkey,historyvalue,clock, adressDB, dbName, userDB, passDB):
 
         try:
 
-            # Create connection
-            connpostgres = psycopg2.connect("host='127.0.0.1'"
-                                    " dbname='networkneural'"
-                                    " user='postgres'"
-                        " password='postgres'")
+            # Create connection adressDB, dbName, userDB, passDB
+            connpostgres = psycopg2.connect("host='{}'"
+                                    " dbname='{}'"
+                                    " user='{}'"
+                        " password='{}'".format(adressDB, dbName, userDB, passDB))
             cursorpost = connpostgres.cursor()
             # Insert data collect
             cursorpost.execute('''INSERT INTO "MEMORYEXPORTZB" (hostname,itemid,itemname,
@@ -141,7 +141,7 @@ class exportDataAPIzabbix():
                         #print(host['host'],item['itemid'],item['name'],item['key_'],historyValue['value'],str(datetime.utcfromtimestamp(int(historyValue['clock'])).strftime('%Y-%m-%d %H:%M:%S')))
                         # insert values in database
                         insertData = exportDataAPIzabbix()
-                        insertData.connectPGSQL(host['host'],item['itemid'],item['name'],item['key_'],historyValue['value'],historyValue['clock'])
+                        insertData.connectPGSQL(host['host'],item['itemid'],item['name'],item['key_'],historyValue['value'],historyValue['clock'], adressDB, dbName, userDB, passDB)
 
             print("[INFO] Values ​​collected by the API")        
             print("[INFO] Values ​​entered in the database")
@@ -158,8 +158,11 @@ if __name__ == "__main__":
     
     flow = exportDataAPIzabbix()
     flow.loginAPI('http://192.168.1.135/zabbix', 'Admin', 'zabbix', 
-                'Servers Production', 'Memória em uso (Porcentagem)', 0)
-    #flow.loginAPI(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5],sys.argv[6]) # Send external command python
+                'Servers Production', 'Memória em uso (Porcentagem)', 
+                0, '127.0.0.1', 'networkneural', 'postgres', 'postgres')
+
+    #flow.loginAPI(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],
+    #sys.argv[5],sys.argv[6],sys.argv[7],sys.argv[8],sys.argv[9],sys.argv[10]) # Send external command python
 
 # login API respective values:
 # Value1 1 --> URL ZABBIX
