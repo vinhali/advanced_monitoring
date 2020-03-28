@@ -12,3 +12,7 @@
              └── API-ZABBIX
                   └── Redes Neurais Recorrentes
                        └── Health Check Script
+
+## Example command
+
+    python3 /etc/neural/scripts/getValues.py "http://192.168.1.135/zabbix" "Admin" "zabbix" "Servers Production" "Memória em uso (Porcentagem)" 0 "127.0.0.1" "networkneural" "postgres" "postgres" "MEMORYEXPORTZB"
