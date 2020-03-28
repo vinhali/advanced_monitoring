@@ -138,11 +138,11 @@ host varchar not null,
 startdate timestamp
 )
 
-create table "MEMORYEXPORTZB"(
+CREATE TABLE "MEMORYEXPORTZB"(
 hostname varchar,
 itemid int,
 itemname varchar,
-itemkey int,
+itemkey varchar,
 historyvalue real,
 datecollect timestamp,
 dateinsert timestamp
