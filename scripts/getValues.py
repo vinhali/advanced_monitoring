@@ -104,6 +104,7 @@ class exportDataAPIzabbix():
         except Exception as e:
 
             print("Error insert data caused by: {}".format(e))
+            sys.exit()
 
     def collectAPI(self, zapi, groupHost, itemZB, rangeDay):
 
@@ -150,7 +151,8 @@ class exportDataAPIzabbix():
 
         except Exception as e:
 
-            print("Error insert data caused by: {}".format(e))
+            print("Error collect API caused by: {}".format(e))
+            sys.exit()
 
 if __name__ == "__main__":
     
