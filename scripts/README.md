@@ -16,3 +16,7 @@
 ## Example command [range=90days]
 
     python3 /etc/neural/scripts/getValues.py "http://192.168.1.135/zabbix" "Admin" "zabbix" "Servers Production" "Memória em uso (Porcentagem)" 90 "127.0.0.1" "networkneural" "postgres" "postgres" "MEMORYEXPORTZB"
+
+## Example crontab
+
+     */5 6-23 * * * python3 /etc/neural/scripts/getValues.py "http://192.168.1.135/zabbix" "Admin" "zabbix" "Servers Production" "Memória em uso (Porcentagem)" 90 "127.0.0.1" "networkneural" "postgres" "postgres" "MEMORYEXPORTZB" >> /etc/neural/scripts/logs/collectMemory.log
