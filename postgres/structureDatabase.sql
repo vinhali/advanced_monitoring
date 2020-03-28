@@ -147,3 +147,23 @@ historyvalue real,
 datecollect timestamp,
 dateinsert timestamp
 );
+
+CREATE TABLE "CPUEXPORTZB"(
+hostname varchar,
+itemid int,
+itemname varchar,
+itemkey varchar,
+historyvalue real,
+datecollect timestamp,
+dateinsert timestamp
+);
+
+CREATE TABLE "DISKEXPORTZB"(
+hostname varchar,
+itemid int,
+itemname varchar,
+itemkey varchar,
+historyvalue real,
+datecollect timestamp,
+dateinsert timestamp
+);
