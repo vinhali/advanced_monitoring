@@ -1,6 +1,6 @@
 #!/usr/local/bin/python3
 # -*- coding: utf-8 -*-
-# filename: tresholdDetector.py
+# filename: ConsumptionAnalysisNeuralNetwork.py
 #-----------------------------------------------------------------------------------------------------------
 # Introduction
 # Script to be used in advanced monitoring
@@ -18,115 +18,122 @@
 # Author:       Luis Henrique Vinhali <vinhali@outlook.com>
 #
 # Changelog:
-# 1.0.0 02-02-2020      Inital version
+# 1.0.0 31-03-2020      Inital version
 #
 #-----------------------------------------------------------------------------------------------------------
 
 import pandas as pd
 import psycopg2
-
-#base = pd.read_csv('dados-hardware.csv')
-
-# CRIANDO CONEXAO NO PSQL                                                                                                                                                                                           
-conn = psycopg2.connect(host="127.0.0.1", dbname='networkneural', user='postgres', password='postgres')
-cur = conn.cursor()
-sql = 'SELECT (date_trunc(\'hour\', to_timestamp(datecollect, \'YYYY-MM-DD hh24:mi:ss\')::timestamp))  \
-id,                                                                                                                 \
-date_trunc(\'hour\', to_timestamp(datecollect, \'YYYY-MM-DD hh24:mi:ss\')::timestamp) as Time,                       \
-historyvalue::numeric::float,                                                                                         \
-hostname                                                                                                               \
-FROM dataset                                                                                                            \
-WHERE hostname = \'client\'                                                                                         \
-ORDER BY date_trunc(\'hour\', to_timestamp(datecollect, \'YYYY-MM-DD hh24:mi:ss\')::timestamp),                           \
-to_timestamp(datecollect, \'YYYY-MM-DD hh24:mi:ss\')::timestamp;                                                           \
-'
-cur.execute(sql)
-dataSet = cur.fetchall()
-
-datecollect = [x[1] for x in dataSet]
-servers = [x[3] for x in dataSet]
-historyoriginal = [x[2] for x in dataSet]
-del historyoriginal[1]
-
-base = pd.read_sql(sql, conn)
-
-cur.close()
-conn.close()
-
-base = base.dropna()
-base = base.iloc[:,2].values
-
-periodos = 19
-previsao_futura = 1 # horizonte
-
-X = base[0:(len(base) - (len(base) % periodos))]
-X_batches = X.reshape(-1, periodos, 1)
-
-y = base[1:(len(base) - (len(base) % periodos)) + previsao_futura]
-y_batches = y.reshape(-1, periodos, 1)
-
-X_teste = base[-(periodos + previsao_futura):]
-X_teste = X_teste[:periodos]
-X_teste = X_teste.reshape(-1, periodos, 1)
-y_teste = base[-(periodos):]
-y_teste = y_teste.reshape(-1, periodos, 1)
-
+import requests
+import json
+from requests.auth import HTTPBasicAuth
+import time
 import tensorflow as tf
-tf.reset_default_graph()
-
-entradas = 1
-neuronios_oculta = 100
-neuronios_saida = 1
-
-xph = tf.placeholder(tf.float32, [None, periodos, entradas])
-yph = tf.placeholder(tf.float32, [None, periodos, neuronios_saida])
-
-celula = tf.contrib.rnn.BasicRNNCell(num_units = neuronios_oculta, activation = tf.nn.relu)
-# camada saida
-celula = tf.contrib.rnn.OutputProjectionWrapper(celula, output_size = 1)
-
-saida_rnn, _ = tf.nn.dynamic_rnn(celula, xph, dtype = tf.float32)
-erro = tf.losses.mean_squared_error(labels = yph, predictions = saida_rnn)
-otimizador = tf.train.AdamOptimizer(learning_rate = 0.001)
-treinamento = otimizador.minimize(erro)
-
-with tf.Session() as sess:
-    sess.run(tf.global_variables_initializer())
-    
-    for epoca in range(2000):
-        _, custo = sess.run([treinamento, erro], feed_dict = {xph: X_batches, yph: y_batches})
-        if epoca % 100 == 0:
-            print(epoca + 1, ' erro: ', custo)
-    
-    previsoes = sess.run(saida_rnn, feed_dict = {xph: X_teste})
-    
 import numpy as np
-y_teste.shape
-y_teste2 = np.ravel(y_teste)
-
-previsoes2 = np.ravel(previsoes)
-
 from sklearn.metrics import mean_absolute_error
-mae = mean_absolute_error(y_teste2, previsoes2)
-
 from datetime import datetime
 
-# data e hora
-dateTimeObj = str(datetime.now())
+class neuralAnalisys():
 
-# Unindo valores originais com previstos e fazendo insert
-errorLevel = str(mae)
-#dataModeling = map(lambda e: (dateTimeObj, e, errorLevel), previsoes2)
-dataModeling = list(zip(previsoes2, historyoriginal, datecollect, servers))
+    def getValuesAPI(self):
 
-# CRIANDO CONEXAO NO PSQL                                                                                                                                                                                           
-conn = psycopg2.connect(host="127.0.0.1", dbname='networkneural', user='postgres', password='postgres')
-cur = conn.cursor()
+        dataSet = []
 
-for prev, ori, collect, srv in dataModeling:
-    cur.execute("INSERT into forecastmemoryconsumption (date, forecastvalue, originalValue, datecollect, hostname, levelerror) VALUES (current_timestamp, '{}', '{}', '{}', '{}', '{}')".format(prev, ori, collect, srv, errorLevel))
-    conn.commit()
+        try:
 
-cur.close()
-conn.close()
+            api_URL = 'http://127.0.0.1:5000/getMemory'
+            response_data = None
 
+            try:
+                response = requests.get(api_URL, auth=HTTPBasicAuth('root', 'root'))
+                response_data = response.json()
+            except:
+                print("[ALERT] Error caused by credentials or request")
+
+            for line in response_data:
+                dataSet.append(np.array([time.strftime("%y-%m-%d %H:%M:%S", time.gmtime(line['datecollect']['$date'])),line['hostname'],line['historyvalue']]))
+
+        except Exception as e:
+            print("[ERROR] Error caused by: {}".format(e))
+
+        return dataSet
+
+    def neuralTraining(self):
+
+        try:
+
+            neural = neuralAnalisys()
+            dataSet = neural.getValuesAPI()
+
+            datecollect = [x[0] for x in dataSet]
+            servers = [x[1] for x in dataSet]
+            historyoriginal = [float(x[2]) for x in dataSet]
+            #del historyoriginal[1]
+
+            base = np.array(historyoriginal)
+
+            periodos = 19
+            previsao_futura = 1 # horizonte
+
+            X = base[0:(len(base) - (len(base) % periodos))]
+            X_batches = X.reshape(-1, periodos, 1)
+
+            y = base[1:(len(base) - (len(base) % periodos)) + previsao_futura]
+            y_batches = y.reshape(-1, periodos, 1)
+
+            X_teste = base[-(periodos + previsao_futura):]
+            X_teste = X_teste[:periodos]
+            X_teste = X_teste.reshape(-1, periodos, 1)
+            y_teste = base[-(periodos):]
+            y_teste = y_teste.reshape(-1, periodos, 1)
+
+            tf.reset_default_graph()
+
+            entradas = 1
+            neuronios_oculta = 100
+            neuronios_saida = 1
+
+            xph = tf.placeholder(tf.float32, [None, periodos, entradas])
+            yph = tf.placeholder(tf.float32, [None, periodos, neuronios_saida])
+
+            celula = tf.contrib.rnn.BasicRNNCell(num_units = neuronios_oculta, activation = tf.nn.relu)
+            # camada saida
+            celula = tf.contrib.rnn.OutputProjectionWrapper(celula, output_size = 1)
+
+            saida_rnn, _ = tf.nn.dynamic_rnn(celula, xph, dtype = tf.float32)
+            erro = tf.losses.mean_squared_error(labels = yph, predictions = saida_rnn)
+            otimizador = tf.train.AdamOptimizer(learning_rate = 0.001)
+            treinamento = otimizador.minimize(erro)
+
+            with tf.Session() as sess:
+                sess.run(tf.global_variables_initializer())
+                
+                for epoca in range(2000):
+                    _, custo = sess.run([treinamento, erro], feed_dict = {xph: X_batches, yph: y_batches})
+                    if epoca % 100 == 0:
+                        print(epoca + 1, ' erro: ', custo)
+                
+                previsoes = sess.run(saida_rnn, feed_dict = {xph: X_teste})
+            y_teste.shape
+            y_teste2 = np.ravel(y_teste)
+
+            previsoes2 = np.ravel(previsoes)
+
+            # level error
+            mae = mean_absolute_error(y_teste2, previsoes2)
+
+            # Unindo valores originais com previstos e fazendo insert
+            errorLevel = str(mae)
+            #dataModeling = map(lambda e: (dateTimeObj, e, errorLevel), previsoes2)
+            dataModeling = list(zip(previsoes2, historyoriginal, datecollect, servers))
+
+            for prev, ori, collect, srv in dataModeling:
+                print("INSERT into forecastmemoryconsumption (date, forecastvalue, originalValue, datecollect, hostname, levelerror) VALUES (current_timestamp, '{}', '{}', '{}', '{}', '{}')".format(prev, ori, collect, srv, errorLevel))
+
+        except Exception as e:
+            print("[ERROR] Error caused by: {}".format(e))
+
+if __name__ == "__main__":
+    
+    flow = neuralAnalisys()
+    flow.neuralTraining()
