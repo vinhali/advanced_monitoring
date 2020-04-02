@@ -22,17 +22,17 @@
 #
 #-----------------------------------------------------------------------------------------------------------
 try:
-    import pandas as pd
-    import psycopg2
+    import sys
+    import time
     import requests
     import json
-    from requests.auth import HTTPBasicAuth
-    import time
-    import tensorflow as tf
+    import psycopg2
     import numpy as np
-    from sklearn.metrics import mean_absolute_error
+    import pandas as pd
+    import tensorflow as tf
     from datetime import datetime
-    import sys
+    from requests.auth import HTTPBasicAuth
+    from sklearn.metrics import mean_absolute_error
 except ImportError as e:
     print("[ALERT] Error import caused by: {}".format(e))
     sys.exit()
