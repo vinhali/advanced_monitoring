@@ -137,8 +137,8 @@ dateinsert timestamp
 );
 
 CREATE TABLE "FORECASTMEMORY" (
-  "countforecast" SERIAL,
-  "idci" varchar PRIMARY KEY NOT NULL,
+  "countforecast" SERIAL PRIMARY KEY,
+  "server" varchar NOT NULL,
   "forecastmemory" varchar NOT NULL,
   "levelerror" varchar NOT NULL,
   "datecollect" timestamp NOT NULL,
@@ -156,9 +156,9 @@ dateinsert timestamp
 );
 
 CREATE TABLE "FORECASTCPU" (
-  "countforecast" SERIAL,
-  "idci" varchar PRIMARY KEY NOT NULL,
-  "forecastmemory" varchar NOT NULL,
+  "countforecast" SERIAL PRIMARY KEY,
+  "server" varchar NOT NULL,
+  "forecastcpu" varchar NOT NULL,
   "levelerror" varchar NOT NULL,
   "datecollect" timestamp NOT NULL,
   "dateforecast" timestamp NOT NULL
@@ -175,9 +175,9 @@ dateinsert timestamp
 );
 
 CREATE TABLE "FORECASTDISK" (
-  "countforecast" SERIAL,
-  "idci" varchar PRIMARY KEY NOT NULL,
-  "forecastmemory" varchar NOT NULL,
+  "countforecast" SERIAL PRIMARY KEY,
+  "server" varchar NOT NULL,
+  "forecastdisk" varchar NOT NULL,
   "levelerror" varchar NOT NULL,
   "datecollect" timestamp NOT NULL,
   "dateforecast" timestamp NOT NULL
