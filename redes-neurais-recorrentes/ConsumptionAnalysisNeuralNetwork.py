@@ -41,17 +41,17 @@ class neuralAnalisys():
 
         try:
 
+            headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
             api_URL = 'http://127.0.0.1:5000/getMemory'
-            response_data = None
 
             try:
-                response = requests.get(api_URL, auth=HTTPBasicAuth('root', 'root'))
+                response = requests.get(api_URL, auth=HTTPBasicAuth('root', 'root'), headers=headers)
                 response_data = response.json()
             except:
                 print("[ALERT] Error caused by credentials or request")
 
             for line in response_data:
-                dataSet.append(np.array([time.strftime("%y-%m-%d %H:%M:%S", time.gmtime(line['datecollect']['$date'])),line['hostname'],line['historyvalue']]))
+                dataSet.append(np.array([line['datecollect']['$date'],line['hostname'],line['historyvalue']]))
 
         except Exception as e:
             print("[ERROR] Error caused by: {}".format(e))
@@ -72,7 +72,7 @@ class neuralAnalisys():
 
             base = np.array(historyoriginal)
 
-            periodos = 19
+            periodos = len(historyoriginal) - 1
             previsao_futura = 1 # horizonte
 
             X = base[0:(len(base) - (len(base) % periodos))]
@@ -108,10 +108,10 @@ class neuralAnalisys():
             with tf.Session() as sess:
                 sess.run(tf.global_variables_initializer())
                 
-                for epoca in range(2000):
+                for epoca in range(200):
                     _, custo = sess.run([treinamento, erro], feed_dict = {xph: X_batches, yph: y_batches})
                     if epoca % 100 == 0:
-                        print(epoca + 1, ' erro: ', custo)
+                        print(epoca + 1, ' Error: ', custo)
                 
                 previsoes = sess.run(saida_rnn, feed_dict = {xph: X_teste})
             y_teste.shape
@@ -127,8 +127,25 @@ class neuralAnalisys():
             #dataModeling = map(lambda e: (dateTimeObj, e, errorLevel), previsoes2)
             dataModeling = list(zip(previsoes2, historyoriginal, datecollect, servers))
 
+            headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+            api_URL_SET = 'http://127.0.0.1:5000/setForecast'
+
             for prev, ori, collect, srv in dataModeling:
                 print("INSERT into forecastmemoryconsumption (date, forecastvalue, originalValue, datecollect, hostname, levelerror) VALUES (current_timestamp, '{}', '{}', '{}', '{}', '{}')".format(prev, ori, collect, srv, errorLevel))
+
+            # testing
+            try:
+
+                payload = {"idci": "12525", "forecastmemory": "90", "forecastcpu": "85",
+                            "forecastcapacity": "85","forecastuptime": "85","levelerror": "85",
+                            "datecollect": "2020-04-01","dateforecast": "2020-04-01"}
+
+                r = requests.post(api_URL_SET, auth=HTTPBasicAuth('root', 'root'), data=json.dumps(payload), headers=headers)
+                print(r.status_code)
+
+            except:
+
+                print("[ALERT] Error caused by credentials or request")
 
         except Exception as e:
             print("[ERROR] Error caused by: {}".format(e))
