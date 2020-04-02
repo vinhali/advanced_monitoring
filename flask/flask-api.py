@@ -1,17 +1,26 @@
-from flask import Flask, request, jsonify
-from flask_restful import Resource, Api
-from sqlalchemy import create_engine
-from bson import json_util
-import json
-from json import dumps
-import psycopg2
-from flask import Flask
-from flask import current_app
-from flask_httpauth import HTTPBasicAuth
-import sys
+try:
+    from flask import Flask, request, jsonify
+    from flask_restful import Resource, Api
+    from sqlalchemy import create_engine
+    from bson import json_util
+    from datetime import datetime
+    from flask import Flask
+    from flask import current_app
+    from flask_httpauth import HTTPBasicAuth
+    from json import dumps
+    import json
+    import psycopg2
+    import sys
+except ImportError as e:
+    print("[ALERT] Error import caused by: {}".format(e))
+    sys.exit()
 
-db_connect = create_engine('postgresql+psycopg2://postgres:postgres@localhost/networkneural')
-conn = db_connect.connect()
+try:
+    db_connect = create_engine('postgresql+psycopg2://postgres:postgres@localhost/networkneural')
+    conn = db_connect.connect()
+except Exception as e:
+    print("[ALERT] Error caused by: {}".format(e))
+
 app = Flask(__name__)
 api = Api(app)
 auth = HTTPBasicAuth()
@@ -76,26 +85,65 @@ class ApiZabbix(Resource):
             print("[ALERT] Error caused by: {}".format(e))
 
 class ApiNeural(Resource):
-    @app.route("/setForecast", methods=['GET', 'POST'])
+    @app.route("/setForecastMemory", methods=['GET', 'POST'])
     @auth.login_required
-    def setForecast():
+    def setForecastMemory():
         try:
 
-            idci = request.json['idci']
+            server = request.json['server']
             forecastmemory = request.json['forecastmemory']
-            forecastcpu = request.json['forecastcpu']
-            forecastcapacity = request.json['forecastcapacity']
-            forecastuptime = request.json['forecastuptime']
             levelerror = request.json['levelerror']
-            datecollect = request.json['datecollect']
-            dateforecast = request.json['dateforecast']
+            datecollect = request.json['datecollect'].replace('000','')
 
-            conn.execute('''INSERT INTO "FORECAST"
-            (idci,forecastmemory,forecastcpu,forecastcapacity,
-            forecastuptime,levelerror,datecollect,dateforecast)
-            VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')'''.format(
-            idci,forecastmemory,forecastcpu,forecastcapacity,forecastuptime,levelerror,
-            datecollect,dateforecast))
+            conn.execute('''INSERT INTO "FORECASTMEMORY"
+            (server,forecastmemory,levelerror,datecollect,dateforecast)
+            VALUES ('{0}','{1}','{2}','{3}',current_timestamp)'''.
+            format(server,forecastmemory,levelerror,
+            datetime.utcfromtimestamp(int(datecollect)).strftime('%Y-%m-%d %H:%M:%S')))
+            conn.commit()
+            
+        except Exception as e:
+            print("[ALERT] Error caused by: {}".format(e))
+
+        return "[INFO] Data is inserted [OK]"
+
+    @app.route("/setForecastCpu", methods=['GET', 'POST'])
+    @auth.login_required
+    def setForecastCpu():
+        try:
+
+            server = request.json['server']
+            forecastcpu = request.json['forecastcpu']
+            levelerror = request.json['levelerror']
+            datecollect = request.json['datecollect'].replace('000','')
+
+            conn.execute('''INSERT INTO "FORECASTCPU"
+            (server,forecastcpu,levelerror,datecollect,dateforecast)
+            VALUES ('{0}','{1}','{2}','{3}',current_timestamp)'''.
+            format(server,forecastcpu,levelerror,
+            datetime.utcfromtimestamp(int(datecollect)).strftime('%Y-%m-%d %H:%M:%S')))
+            conn.commit()
+            
+        except Exception as e:
+            print("[ALERT] Error caused by: {}".format(e))
+
+        return "[INFO] Data is inserted [OK]"
+
+    @app.route("/setForecastDisk", methods=['GET', 'POST'])
+    @auth.login_required
+    def setForecastDisk():
+        try:
+
+            server = request.json['server']
+            forecastdisk = request.json['forecastdisk']
+            levelerror = request.json['levelerror']
+            datecollect = request.json['datecollect'].replace('000','')
+
+            conn.execute('''INSERT INTO "FORECASTDISK"
+            (server,forecastdisk,levelerror,datecollect,dateforecast)
+            VALUES ('{0}','{1}','{2}','{3}',current_timestamp)'''.
+            format(server,forecastdisk,levelerror,
+            datetime.utcfromtimestamp(int(datecollect)).strftime('%Y-%m-%d %H:%M:%S')))
             conn.commit()
             
         except Exception as e:
