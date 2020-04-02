@@ -21,17 +21,21 @@
 # 1.0.0 31-03-2020      Inital version
 #
 #-----------------------------------------------------------------------------------------------------------
-
-import pandas as pd
-import psycopg2
-import requests
-import json
-from requests.auth import HTTPBasicAuth
-import time
-import tensorflow as tf
-import numpy as np
-from sklearn.metrics import mean_absolute_error
-from datetime import datetime
+try:
+    import pandas as pd
+    import psycopg2
+    import requests
+    import json
+    from requests.auth import HTTPBasicAuth
+    import time
+    import tensorflow as tf
+    import numpy as np
+    from sklearn.metrics import mean_absolute_error
+    from datetime import datetime
+    import sys
+except ImportError as e:
+    print("[ALERT] Error import caused by: {}".format(e))
+    sys.exit()
 
 class initTraining():
 
