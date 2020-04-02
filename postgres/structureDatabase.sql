@@ -33,20 +33,6 @@ CREATE TABLE "CI" (
   "dateci" timestamp NOT NULL
 );
 
-CREATE TABLE "EXPORTZABBIX" (
-  "countexportzabbix" SERIAL,
-  "id" SERIAL,
-  "idci" varchar PRIMARY KEY NOT NULL,
-  "hostname" varchar NOT NULL,
-  "itemid" varchar NOT NULL,
-  "itemname" varchar NOT NULL,
-  "itemkey" varchar NOT NULL,
-  "historyvalue" varchar NOT NULL,
-  "datecollect" varchar NOT NULL,
-  "dateinsert" timestamp NOT NULL,
-  "datezabbix" timestamp NOT NULL
-);
-
 CREATE TABLE "IMPACT" (
   "countimpact" SERIAL,
   "idci" varchar PRIMARY KEY NOT NULL,
