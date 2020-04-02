@@ -58,18 +58,6 @@ CREATE TABLE "IMPACT" (
   "dateimpact" timestamp NOT NULL
 );
 
-CREATE TABLE "FORECAST" (
-  "countforecast" SERIAL,
-  "idci" varchar PRIMARY KEY NOT NULL,
-  "forecastmemory" varchar NOT NULL,
-  "forecastcpu" varchar NOT NULL,
-  "forecastcapacity" varchar NOT NULL,
-  "forecastuptime" varchar NOT NULL,
-  "levelerror" varchar NOT NULL,
-  "datecollect" timestamp NOT NULL,
-  "dateforecast" timestamp NOT NULL
-);
-
 CREATE TABLE "RELATIONSHIP" (
   "countrelationship" SERIAL,
   "idci" varchar PRIMARY KEY NOT NULL,
@@ -148,6 +136,15 @@ datecollect timestamp,
 dateinsert timestamp
 );
 
+CREATE TABLE "FORECASTMEMORY" (
+  "countforecast" SERIAL,
+  "idci" varchar PRIMARY KEY NOT NULL,
+  "forecastmemory" varchar NOT NULL,
+  "levelerror" varchar NOT NULL,
+  "datecollect" timestamp NOT NULL,
+  "dateforecast" timestamp NOT NULL
+);
+
 CREATE TABLE "CPUEXPORTZB"(
 hostname varchar,
 itemid int,
@@ -158,6 +155,15 @@ datecollect timestamp,
 dateinsert timestamp
 );
 
+CREATE TABLE "FORECASTCPU" (
+  "countforecast" SERIAL,
+  "idci" varchar PRIMARY KEY NOT NULL,
+  "forecastmemory" varchar NOT NULL,
+  "levelerror" varchar NOT NULL,
+  "datecollect" timestamp NOT NULL,
+  "dateforecast" timestamp NOT NULL
+);
+
 CREATE TABLE "DISKEXPORTZB"(
 hostname varchar,
 itemid int,
@@ -166,4 +172,13 @@ itemkey varchar,
 historyvalue real,
 datecollect timestamp,
 dateinsert timestamp
+);
+
+CREATE TABLE "FORECASTDISK" (
+  "countforecast" SERIAL,
+  "idci" varchar PRIMARY KEY NOT NULL,
+  "forecastmemory" varchar NOT NULL,
+  "levelerror" varchar NOT NULL,
+  "datecollect" timestamp NOT NULL,
+  "dateforecast" timestamp NOT NULL
 );
