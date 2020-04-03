@@ -61,7 +61,7 @@ class ApiZabbix(Resource):
     def getCpu():
         try:
             query = conn.execute('''SELECT DISTINCT ON (date_trunc('minute', datecollect))
-            hostname,itemid,itemname,itemkey,historyvalue,to_char(datecollect, 'yyyy-mm-dd hh:mm:ss'),dateinsert
+            hostname,itemid,itemname,itemkey,historyvalue,datecollect,dateinsert
             FROM "CPUEXPORTZB"
             WHERE date_trunc('day', datecollect) = '2020-02-25'
             ORDER BY date_trunc('minute', datecollect)''')
@@ -75,7 +75,7 @@ class ApiZabbix(Resource):
     def getDisk():
         try:
             query = conn.execute('''SELECT DISTINCT ON (date_trunc('minute', datecollect))
-            hostname,itemid,itemname,itemkey,historyvalue,to_char(datecollect, 'yyyy-mm-dd hh:mm:ss'),dateinsert
+            hostname,itemid,itemname,itemkey,historyvalue,datecollect,dateinsert
             FROM "DISKEXPORTZB"
             WHERE date_trunc('day', datecollect) = '2020-02-25'
             ORDER BY date_trunc('minute', datecollect)''')
