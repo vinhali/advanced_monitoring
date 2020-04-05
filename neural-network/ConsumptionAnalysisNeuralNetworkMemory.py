@@ -118,7 +118,7 @@ class neuralAnalisys():
             with tf.Session() as sess:
                 sess.run(tf.global_variables_initializer())
                 
-                for epoch in range(1000):
+                for epoch in range(2000):
                     _, cost = sess.run([training, calculateError], feed_dict = {xph: X_batches, yph: y_batches})
                     if epoch % 100 == 0:
                         print("[INFO] Epoch: {} - Level Error: {}".format(epoch,cost))
@@ -132,12 +132,12 @@ class neuralAnalisys():
 
             mae = mean_absolute_error(y_test2, final_forecast)
 
-            errorLevel = str(mae)
+            for (host, forecast, date) in list(zip(servers, final_forecast, datecollect)):
+                send.postForecastMemory(host, forecast, cost, date)
 
-            dataModeling = list(zip(servers, final_forecast, valuesAnalisys, errorLevel, datecollect))
-
-            for servers, final_forecast, valuesAnalisys, errorLevel, datecollect in dataModeling:
-                send.postForecastMemory(servers, final_forecast, errorLevel, datecollect)
+            print("[INFO] Number data analisys: {}".format(np.shape(base)))
+            print("[INFO] Number data forecast: {}".format(np.shape(forecast)))
+            print("[INFO] Mean absolute error: {}".format(str(mae)))
 
         except Exception as e:
             print("[ERROR] Error caused by: {}".format(e))
