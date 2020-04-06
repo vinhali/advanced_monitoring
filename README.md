@@ -89,6 +89,9 @@ O Zabbix server é o responsável por monitorar o servidor que está alocado o b
 <br>
 Após esse processamento por redes neurais recorrentes utilizando Python como kernel da análise, os dados serão enviadas para o banco de dados PostgreSQL via batch, o script de health check irá ler os dados recém inseridos e buscar por possíveis problemas, após detectar um alto consumo de memória da máquina pelo banco de dados, irá realizar o START de uma nova máquina com configurações superiores a máquina em execução gerando um alerta no GLPI sobre o incidente que o ocorreu e quais foram as soluções testadas até o incidente ser tratado, gerando uma base histórica para facilitar a próxima análise, por fim o cliente e técnicos podem visualizar todo o processo de forma amigável pelo Dashboard criado no Grafana.
 
+## :movie_camera: Cenário teste do projeto
+
+Com a evolução contínua do mundo técnlógico, notamos que é preciso se inovar constantemente, então por que não inovar a forma que monitoramos nosso ecosistema de TI? Vivemos a geração do agora, onde um serviço indisponível não é tolerado mais, é simples pensar nisso, olhe para a principal ferramenta de tecnológica que você usa atualmente, qual sensação você possúí quando á encontra indisponível ? Imagina agora sensação de um cliente que paga por essa monitoração, onde você só pode entregar a ele resoluções após o fato, não sendo preventivo, não garantindo disponibilidade sem interrupção. A inteligência artificial é a forma mais inteligente de trabalharmos atualmente, por que não usar em um lugar onde a previsão é algo crucial para o desempenho?
 
 ## :memo: Licença
 [GPL v2](https://github.com/vinhali/advanced_monitoring/blob/master/LICENSE)
