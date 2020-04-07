@@ -10,7 +10,7 @@ Scripts em python
              └── API-ZABBIX
                   └── Redes Neurais Recorrentes
 
-## Para retornar o valor como único na previsão dentro da śerie temporal, modifique para:
+## Para retornar o valor como único na previsão dentro da série temporal, modifique para:
 
     periods = 1
     future_forecast = 1
