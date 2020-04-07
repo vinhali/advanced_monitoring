@@ -32,7 +32,7 @@ y_teste = y_teste.reshape(-1, periodos, 1)
 tf.reset_default_graph()
 
 entradas = 1
-neuronios_oculta = 2000
+neuronios_oculta = 1000
 neuronios_saida = 1
 
 xph = tf.placeholder(tf.float32, [None, periodos, entradas])
