@@ -168,3 +168,14 @@ CREATE TABLE "FORECASTDISK" (
   "datecollect" timestamp NOT NULL,
   "dateforecast" timestamp NOT NULL
 );
+
+CREATE TABLE "FORECASTGRAFANA"(
+    id serial primary key,
+    hostname varchar not null,
+    memory varchar not null,
+    cpu varchar not null,
+    lossup varchar not null,
+    errorcpu varchar not null,
+    errormemory varchar not null,
+	dateinsert timestamp
+);
