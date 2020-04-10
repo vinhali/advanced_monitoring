@@ -150,32 +150,12 @@ CREATE TABLE "FORECASTCPU" (
   "dateforecast" timestamp NOT NULL
 );
 
-CREATE TABLE "DISKEXPORTZB"(
-hostname varchar,
-itemid int,
-itemname varchar,
-itemkey varchar,
-historyvalue real,
-datecollect timestamp,
-dateinsert timestamp
-);
-
-CREATE TABLE "FORECASTDISK" (
-  "countforecast" SERIAL PRIMARY KEY,
-  "server" varchar NOT NULL,
-  "forecastdisk" varchar NOT NULL,
-  "levelerror" varchar NOT NULL,
-  "datecollect" timestamp NOT NULL,
-  "dateforecast" timestamp NOT NULL
-);
-
 CREATE TABLE "FORECASTGRAFANA"(
     id serial primary key,
     hostname varchar not null,
-    memory varchar not null,
-    cpu varchar not null,
+    typeAnalisys varchar not null,
+    tresholdAnalisys varchar not null,
     lossup varchar not null,
-    errorcpu varchar not null,
-    errormemory varchar not null,
-	dateinsert timestamp
+    levelError varchar not null,
+    dateinsert timestamp
 );
