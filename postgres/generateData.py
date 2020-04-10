@@ -15,7 +15,7 @@ def connectPgsql():
 
         print("[FAILED] {}".format(e))
 
-def datetime_range(start, end, delta):
+def datetime_range(start,end,delta):
     current = start
     while current < end:
         yield current
@@ -39,14 +39,15 @@ def generatePercent(start,end,lengthArray):
 
         print("[FAILED] {}".format(e))
 
-def generateQuery(tbl,hostname,itemid,itemname,itemkey):
+def generateQuery(tbl,hostname,itemid,itemname,itemkey,days,month,year,hourStart,endTime):
 
     try:
 
         cur, conn = connectPgsql()
 
         dts = [dt.strftime('%Y-%m-%d %H:%M') for dt in 
-        datetime_range(datetime(2020, 4, 4, 6), datetime(2020, 4, 4, 23), 
+        datetime_range(datetime(int(year), int(month), int(days), int(hourStart)), 
+        datetime(int(year), int(month), int(days), int(endTime)), 
         timedelta(minutes=1))]
 
         cpuMin = generatePercent(20,40,500)
@@ -72,21 +73,18 @@ def generateQuery(tbl,hostname,itemid,itemname,itemkey):
 
         print("[FAILED] {}".format(e))
 
-def run(days):
+def run(days,month,year,hourStart,endTime):
 
     try:
 
-        n = 0
-
-        while n <= days:
-            n = n+1
-
-            generateQuery('CPUEXPORTZB','serveNFE','30517','Uso do processador na média de 1 minuto','system.cpu.load[percpu,avg1]')
-            generateQuery('MEMORYEXPORTZB','serveNFE','31530','Memória em uso (Porcentagem)','vm.memory.size[pused]')
+        generateQuery('CPUEXPORTZB','serveNFE','30517','Uso do processador na média de 1 minuto','system.cpu.load[percpu,avg1]',days, month, year, hourStart, endTime)
+        generateQuery('MEMORYEXPORTZB','serveNFE','31530','Memória em uso (Porcentagem)','vm.memory.size[pused]',days, month, year, hourStart, endTime)
 
     except Exception as e:
 
         print("[FAILED] {}".format(e))
 
 if __name__ == '__main__':
-    run(7)
+
+    for days in range(8):
+        run(days, 4, 2020, 6, 23)
