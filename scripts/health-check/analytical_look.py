@@ -109,7 +109,7 @@ class neuralAnalisys():
                 if float(crisisLimit[1]) >= 80:
                     if float(consume[1]) == float(crisisLimit[1]):
                         print("[INFO] {0} Crisis: {1}".format(name,consume))
-                        os.system('''php /etc/neural/tickets/open.php eventhost="{}" event="OPEN" state="CRITICAL" hostproblemid=0 lasthostproblemid=0 servico="{}" triggerid="Consume > 80%" eventansible="Analytical Crisis"'''.format(
+                        os.system('''php /etc/neural/tickets/open.php eventhost="{}" event="OPEN" state="CRITICAL" hostproblemid=0 lasthostproblemid=0 servico="{}" triggerid="Forecast - " eventansible="Analytical Crisis"'''.format(
                         consume[0],str("{} with Consume > 80% for {} - Level Error: {} - When: {}").format(
                                 name,consume[0],consume[2],consume[3])
                         ))
