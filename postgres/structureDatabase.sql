@@ -155,7 +155,7 @@ CREATE TABLE "FORECASTGRAFANA"(
     hostname varchar not null,
     typeAnalisys varchar not null,
     tresholdAnalisys varchar not null,
-    lossup varchar not null,
+    lossup timestamp not null,
     levelError varchar not null,
-    dateinsert timestamp
+	  dateinsert timestamp
 );
