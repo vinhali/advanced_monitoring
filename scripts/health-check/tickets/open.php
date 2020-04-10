@@ -32,7 +32,7 @@ $eventhost         = $eventval['eventhost'];
 $event             = $eventval['event'];
 $state             = $eventval['state'];
 $servico           = $eventval['servico'];
-$eventansible      = $eventval['eventansible'];
+$eventforecast      = $eventval['eventforecast'];
 $triggerid         = $eventval['triggerid'];
 unset($eventval);
 
@@ -110,7 +110,7 @@ if ($event == "OPEN") {
 	unset($response);
 	
     if (!empty($session)) {
-        $title   = "$triggerid: $eventhost - $servico - Analytical Crisis IA [$state]";
+        $title   = "$triggerid: $eventhost - $servico [$state]";
         $content = "Nome do host: $eventhost. ID da trigger: $triggerid. Status da trigger: $state.";
 		$arg[]      = "method=glpi.listDropdownValues";
 		$arg[]      = "url=$xmlurl";
