@@ -22,7 +22,7 @@ lin_reg.fit(X, y)
 def viz_linear():
     plt.scatter(X, y, color='red')
     plt.plot(X, lin_reg.predict(X), color='blue')
-    plt.title('Polynomial Regression for CPU')
+    plt.title('Linear Regression for CPU')
     plt.xlabel('Time range')
     plt.ylabel('Consume')
     plt.show()
