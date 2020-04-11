@@ -16,3 +16,5 @@ Realizada com o trecho:
 
     # 20 = time
     print(pol_reg.predict(poly_reg.fit_transform([[20]])))
+
+Referência: https://towardsdatascience.com/machine-learning-polynomial-regression-with-python-5328e4e8a386
