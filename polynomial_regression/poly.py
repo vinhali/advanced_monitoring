@@ -45,4 +45,7 @@ def viz_polymonial():
     plt.ylabel('Consume')
     plt.show()
     return
-viz_polymonial()
+#viz_polymonial()
+
+# 5 = time
+print(pol_reg.predict(poly_reg.fit_transform([[5]])))
