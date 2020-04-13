@@ -11,9 +11,9 @@ Cada um desses componentes é explicitamente especificado no modelo como um par�
 
 Os parâmetros do modelo ARIMA são definidos da seguinte maneira:
 
-  - <b>p:</b> O número de observações de atraso incluídas no modelo, também chamado de ordem de atraso.
-  - <b>d:</b> O número de vezes que as observações brutas são diferenciadas, também chamado de grau de diferenciação.
-  - <b>q:</b> O tamanho da janela da média móvel, também chamada de ordem da média móvel.
+  - <b>P:</b> O número de observações de atraso incluídas no modelo, também chamado de ordem de atraso.
+  - <b>D:</b> O número de vezes que as observações brutas são diferenciadas, também chamado de grau de diferenciação.
+  - <b>Q:</b> O tamanho da janela da média móvel, também chamada de ordem da média móvel.
 
 ## Modelo de média móvel integrada autorregressiva
 
