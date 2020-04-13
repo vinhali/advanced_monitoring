@@ -32,7 +32,7 @@ try:
     axes[1].plot(data[:].diff(12), label='Seasonal Differencing', color='green')
     axes[1].set_title('Seasonal Differencing')
     plt.legend(loc='upper left', fontsize=10)
-    plt.suptitle('a10 - Drug Sales', fontsize=16)
+    plt.suptitle('Drug Sales', fontsize=16)
     plt.show()
 
     # Seasonal - fit stepwise auto-ARIMA
@@ -67,7 +67,7 @@ try:
                     upper_series,
                     color='k', alpha=.15)
 
-    plt.title("SARIMA - Final Forecast of a10 - Drug Sales")
+    plt.title("SARIMA - Final Forecast - Drug Sales")
     plt.show()
     print("[SUCESS] Generated forecast")
 
