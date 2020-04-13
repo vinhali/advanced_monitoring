@@ -38,6 +38,7 @@ Variáveis:
 |**seasonal**|true|Construir o modelo SARIMA usando auto_arima()|
 |**M**|12|Define a frequência para 12 séries mensais|
 |**D**|1|Grau|
+|**n_periods**|Períodos|Previsão para 24 períodos (2 anos)|
 
 ## Dados:
 
