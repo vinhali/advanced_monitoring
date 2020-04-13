@@ -23,9 +23,9 @@ Ele explicitamente atende a um conjunto de estruturas padrão em dados de série
 
 ## Sazonalidade
 
-  - Tendência: crescente durante o período amostral.
-  - Variância: observa-se que, além do aumento nos ganhos, a distância entre os trimestres com maiores e menores ganhos também está aumentando, indicando variância crescente.
-  - Sazonalidade: verifica-se um comportamento sazonal nos ganhos trimestrais. Isto é, nos dois primeiros trimestres (Abril e Julho) há um aumento nos ganhos quando comparado com os últimos trimestres do ano (Outubro e Janeiro). Além disso, parece que a sazonalidade é crescente ao longo do tempo.
+  - <b>Tendência:</b> crescente durante o período amostral.
+  - <b>Variância:</b> observa-se que, além do aumento nos ganhos, a distância entre os trimestres com maiores e menores ganhos também está aumentando, indicando variância crescente.
+  - <b>Sazonalidade:</b> verifica-se um comportamento sazonal nos ganhos trimestrais. Isto é, nos dois primeiros trimestres (Abril e Julho) há um aumento nos ganhos quando comparado com os últimos trimestres do ano (Outubro e Janeiro). Além disso, parece que a sazonalidade é crescente ao longo do tempo.
 
 
 ## Dados
