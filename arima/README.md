@@ -21,6 +21,10 @@ Um modelo ARIMA é uma classe de modelos estatísticos para analisar e prever da
 
 Ele explicitamente atende a um conjunto de estruturas padrão em dados de séries temporais e, como tal, fornece um método simples, porém poderoso, para fazer previsões hábeis de séries temporais.
 
+## Dados
+
+<img src="https://raw.githubusercontent.com/vinhali/advanced_monitoring/master/arima/img/data.png">
+
 ## Forecast
 
 <img src="https://raw.githubusercontent.com/vinhali/advanced_monitoring/master/arima/img/arima.png">
