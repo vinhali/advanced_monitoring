@@ -36,10 +36,6 @@ Ele explicitamente atende a um conjunto de estruturas padrão em dados de série
 
 <img src="https://raw.githubusercontent.com/vinhali/advanced_monitoring/master/arima/img/arima.png">
 
-<b>Referência da previsão:</b> https://machinelearningmastery.com/arima-for-time-series-forecasting-with-python/
-
-<b>Referência das séries temporais:</b> https://www.machinelearningplus.com/time-series/time-series-analysis-python/
+<b>Referência da previsão:</b> https://pypi.org/project/pmdarima/
 
 <b>Referência sobre o método:</b> https://pt.wikipedia.org/wiki/ARIMA
-
-<b>Referência sobre o python:</b> https://pypi.org/project/pyramid-arima/
