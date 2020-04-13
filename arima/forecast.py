@@ -32,7 +32,7 @@ class operationsArima():
             axes[0].legend(loc='upper left', fontsize=10)
             print("[OK] Generated axes")
 
-            # Seasinal Dei
+            # Seasonal
             axes[1].plot(data[:], label='Original Series')
             axes[1].plot(data[:].diff(12), label='Seasonal Differencing', color='green')
             axes[1].set_title('Seasonal Differencing')
