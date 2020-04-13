@@ -29,3 +29,4 @@ Um modelo de regressão linear é construído incluindo o número e o tipo de te
 
 ## Forecast
 
+<img src="https://raw.githubusercontent.com/vinhali/advanced_monitoring/master/arima/img/arima.png">
