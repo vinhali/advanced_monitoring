@@ -15,18 +15,28 @@ Os parâmetros do modelo ARIMA são definidos da seguinte maneira:
   - <b>D:</b> O número de vezes que as observações brutas são diferenciadas, também chamado de grau de diferenciação.
   - <b>Q:</b> O tamanho da janela da média móvel, também chamada de ordem da média móvel.
 
-## Modelo de média móvel integrada autorregressiva
+Modelo de média móvel integrada autorregressiva
+--------------
 
 Um modelo ARIMA é uma classe de modelos estatísticos para analisar e prever dados de séries temporais.
 
 Ele explicitamente atende a um conjunto de estruturas padrão em dados de séries temporais e, como tal, fornece um método simples, porém poderoso, para fazer previsões hábeis de séries temporais.
 
-## Sazonalidade
+Sazonalidade
+--------------
 
   - <b>Tendência:</b> crescente durante o período amostral.
   - <b>Variância:</b> observa-se que, além do aumento nos ganhos, a distância entre os trimestres com maiores e menores ganhos também está aumentando, indicando variância crescente.
   - <b>Sazonalidade:</b> verifica-se um comportamento sazonal nos ganhos trimestrais. Isto é, nos dois primeiros trimestres (Abril e Julho) há um aumento nos ganhos quando comparado com os últimos trimestres do ano (Outubro e Janeiro). Além disso, parece que a sazonalidade é crescente ao longo do tempo.
 
+Variáveis
+--------------
+
+|Nome das variáveis|Valor|Comentários|
+|:--|:--|:--|
+|**seasonal**|true|Construir o modelo SARIMA usando auto_arima()|
+|**M**|12|Define a frequência para 12 séries mensais|
+|**D**|1|Grau|
 
 ## Dados
 
