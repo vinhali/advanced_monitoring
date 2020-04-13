@@ -1,4 +1,5 @@
-## Arima
+Arima
+--------------
 
 ARIMA é um acrônimo que significa Média Móvel Integrada autorregressiva. É uma classe de modelo que captura um conjunto de diferentes estruturas temporais padrão em dados de séries temporais.
 
@@ -29,7 +30,7 @@ Sazonalidade
   - <b>Variância:</b> observa-se que, além do aumento nos ganhos, a distância entre os trimestres com maiores e menores ganhos também está aumentando, indicando variância crescente.
   - <b>Sazonalidade:</b> verifica-se um comportamento sazonal nos ganhos trimestrais. Isto é, nos dois primeiros trimestres (Abril e Julho) há um aumento nos ganhos quando comparado com os últimos trimestres do ano (Outubro e Janeiro). Além disso, parece que a sazonalidade é crescente ao longo do tempo.
 
-Variáveis
+Variáveis:
 --------------
 
 |Nome das variáveis|Valor|Comentários|
@@ -38,11 +39,11 @@ Variáveis
 |**M**|12|Define a frequência para 12 séries mensais|
 |**D**|1|Grau|
 
-## Dados
+## Dados:
 
 <img src="https://raw.githubusercontent.com/vinhali/advanced_monitoring/master/arima/img/data.png">
 
-## Previsão
+## Previsão:
 
 <img src="https://raw.githubusercontent.com/vinhali/advanced_monitoring/master/arima/img/arima.png">
 
