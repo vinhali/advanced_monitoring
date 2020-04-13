@@ -30,3 +30,5 @@ Ele explicitamente atende a um conjunto de estruturas padrão em dados de série
 <img src="https://raw.githubusercontent.com/vinhali/advanced_monitoring/master/arima/img/arima.png">
 
 Referência: https://machinelearningmastery.com/arima-for-time-series-forecasting-with-python/
+
+Referência: https://www.machinelearningplus.com/time-series/time-series-analysis-python/
