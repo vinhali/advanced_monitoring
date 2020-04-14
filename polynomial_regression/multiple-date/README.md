@@ -1,4 +1,4 @@
-## Regressão polinomial para consumo de CPU
+## Regressão polinomial para consumo de CPU com série temporal
 
 Visualizando regressão linear simples:
 
