@@ -2,6 +2,7 @@
 
 ![png](output_3_1.png)
 
+## Training
 
     Fit ARIMA: order=(0, 0, 0) seasonal_order=(0, 1, 0, 11); AIC=nan, BIC=nan, Fit time=0.034 seconds
     Total fit time: 0.036 seconds
@@ -31,8 +32,6 @@
     [OK] Generated model
     [OK] Generated series
 
+## Result
 
 ![png](output_3_4.png)
-
-
-    [SUCESS] Generated forecast
