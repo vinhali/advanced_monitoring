@@ -34,9 +34,3 @@
 
 
     [SUCESS] Generated forecast
-
-
-
-```python
-
-```
