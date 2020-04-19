@@ -149,19 +149,6 @@ if __name__ == "__main__":
     [OK] Generated series
 
 
-    /home/vinhali/anaconda3/lib/python3.7/site-packages/statsmodels/tsa/statespace/mlemodel.py:3048: UserWarning: Early subset of data for variable 0  has too few non-missing observations to calculate test statistic.
-      ' calculate test statistic.' % i)
-    /home/vinhali/anaconda3/lib/python3.7/site-packages/statsmodels/tsa/statespace/mlemodel.py:3053: UserWarning: Later subset of data for variable 0  has too few non-missing observations to calculate test statistic.
-      ' calculate test statistic.' % i)
-    /home/vinhali/anaconda3/lib/python3.7/site-packages/scipy/stats/_distn_infrastructure.py:903: RuntimeWarning: invalid value encountered in greater
-      return (a < x) & (x < b)
-    /home/vinhali/anaconda3/lib/python3.7/site-packages/scipy/stats/_distn_infrastructure.py:903: RuntimeWarning: invalid value encountered in less
-      return (a < x) & (x < b)
-    /home/vinhali/anaconda3/lib/python3.7/site-packages/scipy/stats/_distn_infrastructure.py:1912: RuntimeWarning: invalid value encountered in less_equal
-      cond2 = cond0 & (x <= _a)
-
-
-
 ![png](output_3_4.png)
 
 
