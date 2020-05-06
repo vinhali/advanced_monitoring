@@ -31,7 +31,7 @@ class Credentials(Resource):
     @auth.verify_password
     def verify_password(username, password):
         try:
-            query = conn.execute('''select username, password from \"USERS_ANSIBLE\" 
+            query = conn.execute('''select username, password from \"USERS_DYNAMIC\" 
             WHERE username = '{}' and password = '{}'; '''.format(username, password))
             result = [dict(zip(tuple(query.keys()), i)) for i in query.cursor]
             resultDumps =  json.dumps(result[0], default=json_util.default)
@@ -69,13 +69,24 @@ class ApiZabbix(Resource):
         except Exception as e:
             print("[ALERT] Error caused by: {}".format(e))
 
-    @app.route("/getDisk")
+    @app.route("/getForecastMemory")
     @auth.login_required
-    def getDisk():
+    def getForecastMemory():
         try:
-            query = conn.execute('''SELECT hostname,itemid,itemname,itemkey,
-                                historyvalue,datecollect,dateinsert
-                                FROM "DISKEXPORTZB"
+            query = conn.execute('''SELECT server,forecastmemory,levelerror,datecollect,dateforecast
+                                FROM "FORECASTMEMORY"
+                                ORDER BY datecollect''')
+            result = [dict(zip(tuple(query.keys()), i)) for i in query.cursor]
+            return json.dumps(result, default=json_util.default)
+        except Exception as e:
+            print("[ALERT] Error caused by: {}".format(e))
+
+    @app.route("/getForecastCpu")
+    @auth.login_required
+    def getForecastCpu():
+        try:
+            query = conn.execute('''SELECT server,forecastcpu,levelerror,datecollect,dateforecast
+                                FROM "FORECASTCPU"
                                 ORDER BY datecollect''')
             result = [dict(zip(tuple(query.keys()), i)) for i in query.cursor]
             return json.dumps(result, default=json_util.default)
@@ -97,6 +108,7 @@ class ApiNeural(Resource):
             (server,forecastmemory,levelerror,datecollect,dateforecast)
             VALUES ('{0}','{1}','{2}',to_timestamp({3}) AT TIME ZONE 'UTC',current_timestamp)'''.
             format(server,forecastmemory,levelerror,int(datecollect)/1000))
+            #conn.commit()
             
         except Exception as e:
             print("[ALERT] Error caused by: {}".format(e))
@@ -117,28 +129,260 @@ class ApiNeural(Resource):
             (server,forecastcpu,levelerror,datecollect,dateforecast)
             VALUES ('{0}','{1}','{2}',to_timestamp({3}) AT TIME ZONE 'UTC',current_timestamp)'''.
             format(server,forecastcpu,levelerror,int(datecollect)/1000))
+            #conn.commit()
             
         except Exception as e:
             print("[ALERT] Error caused by: {}".format(e))
 
         return "[INFO] Data is inserted [OK]"
 
-    @app.route("/setForecastDisk", methods=['GET', 'POST'])
+    @app.route("/setForecastGrafana", methods=['GET', 'POST'])
     @auth.login_required
-    def setForecastDisk():
+    def setForecastGrafana():
         try:
 
-            server = request.json['server']
-            forecastdisk = request.json['forecastdisk']
-            levelerror = request.json['levelerror']
-            datecollect = request.json['datecollect'].replace('000','')
+            hostname = request.json['hostname']
+            typeAnalisys = request.json['typeAnalisys']
+            tresholdAnalisys = request.json['tresholdAnalisys']
+            lossup = request.json['lossup']
+            levelError = request.json['levelError']
 
-            conn.execute('''INSERT INTO "FORECASTDISK"
-            (server,forecastdisk,levelerror,datecollect,dateforecast)
-            VALUES ('{0}','{1}','{2}',to_timestamp({3}) AT TIME ZONE 'UTC',current_timestamp)'''.
-            format(server,forecastdisk,levelerror,int(datecollect)/1000))
+            conn.execute('''INSERT INTO "FORECASTGRAFANA"
+            (hostname,typeAnalisys,tresholdAnalisys,lossup,levelError,dateinsert)
+            VALUES ('{0}','{1}','{2}',to_timestamp({3}),{4},current_timestamp)'''.
+            format(hostname,typeAnalisys,tresholdAnalisys,int(lossup)/1000,levelError))
+            #conn.commit()
             
         except Exception as e:
+            print("[ALERT] Error caused by: {}".format(e))
+
+        return "[INFO] Data is inserted [OK]"
+
+class requestWeb(Resource):
+
+    @app.route("/getHostname")
+    @auth.login_required
+    def getHostname():
+        try:
+            query = conn.execute('''SELECT hostname FROM "CI" ORDER BY hostname ASC''')
+            result = [dict(zip(tuple(query.keys()), i)) for i in query.cursor]
+            return json.dumps(result, default=json_util.default)
+        except Exception as e:
+            print("[ALERT] Error caused by: {}".format(e))
+
+    @app.route("/getCustomer")
+    @auth.login_required
+    def getCustomer():
+        try:
+            query = conn.execute('''SELECT customer FROM "CUSTOMER" ORDER BY customer ASC''')
+            result = [dict(zip(tuple(query.keys()), i)) for i in query.cursor]
+            return json.dumps(result, default=json_util.default)
+        except Exception as e:
+            print("[ALERT] Error caused by: {}".format(e))
+
+    @app.route("/getCustcode")
+    @auth.login_required
+    def getCustcode():
+        try:
+            query = conn.execute('''SELECT customer_code FROM "CUSTOMER" ORDER BY customer_code ASC''')
+            result = [dict(zip(tuple(query.keys()), i)) for i in query.cursor]
+            return json.dumps(result, default=json_util.default)
+        except Exception as e:
+            print("[ALERT] Error caused by: {}".format(e))
+
+    @app.route("/getPlaybook")
+    @auth.login_required
+    def getPlaybook():
+        try:
+            query = conn.execute('''SELECT name FROM "PLAYBOOK" ORDER BY name ASC''')
+            result = [dict(zip(tuple(query.keys()), i)) for i in query.cursor]
+            return json.dumps(result, default=json_util.default)
+        except Exception as e:
+            print("[ALERT] Error caused by: {}".format(e))
+
+    @app.route("/getUsers")
+    @auth.login_required
+    def getUsers():
+        try:
+            query = conn.execute('''SELECT * FROM "USERS_DYNAMIC" ORDER BY username ASC''')
+            result = [dict(zip(tuple(query.keys()), i)) for i in query.cursor]
+            return json.dumps(result, default=json_util.default)
+        except Exception as e:
+            print("[ALERT] Error caused by: {}".format(e))
+
+    @app.route("/getListCustomer")
+    @auth.login_required
+    def getListCustomer():
+        try:
+            query = conn.execute('''SELECT * FROM "CUSTOMER" ORDER BY customer ASC''')
+            result = [dict(zip(tuple(query.keys()), i)) for i in query.cursor]
+            return json.dumps(result, default=json_util.default)
+        except Exception as e:
+            print("[ALERT] Error caused by: {}".format(e))
+
+    @app.route("/getCI")
+    @auth.login_required
+    def getCI():
+        try:
+            query = conn.execute('''select
+            "CI".idci,"CI".customer,"CI".customer_code,ip,hostname,sla,impact,
+            estimativemoney,downtime,felling,location,type,journey,
+            user,number_thrist,application,topology,support
+            from "CI"
+            inner join "IMPACT"
+            on "IMPACT".idci = "CI".idci
+            inner join "RELATIONSHIP"
+            on "RELATIONSHIP".idci = "CI".idci
+            inner join "DESCRIPTION"
+            on "DESCRIPTION".idci = "CI".idci''')
+            result = [dict(zip(tuple(query.keys()), i)) for i in query.cursor]
+            return json.dumps(result, default=json_util.default)
+        except Exception as e:
+            print("[ALERT] Error caused by: {}".format(e))
+
+    @app.route("/getAnsibleHistory")
+    @auth.login_required
+    def getAnsibleHistory():
+        try:
+            query = conn.execute('''SELECT * FROM "ANSIBLE_HISTORY" ORDER BY playbook ASC''')
+            result = [dict(zip(tuple(query.keys()), i)) for i in query.cursor]
+            return json.dumps(result, default=json_util.default)
+        except Exception as e:
+            print("[ALERT] Error caused by: {}".format(e))
+
+    @app.route("/setCustomer", methods=['GET', 'POST'])
+    @auth.login_required
+    def setCustomer():
+        try:
+
+            customer_code = request.json['customer_code']
+            customer = request.json['customer']
+            segment = request.json['segment']
+            cnpj = request.json['cnpj']
+            socialreason = request.json['socialreason']
+            contact = request.json['contact']
+            telephone = request.json['telephone']
+            adress = request.json['adress']
+
+            conn.execute('''INSERT INTO "CUSTOMER" (customer_code,customer,segment,cnpj,
+            socialreason,contact,telephone,adress,datecustomer)
+            VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}',current_timestamp)'''.format(
+            customer_code,customer,segment,cnpj,socialreason,contact,telephone,adress))
+            #conn.commit()
+            
+        except Exception as e:
+
+            print("[ALERT] Error caused by: {}".format(e))
+
+        return "[INFO] Data is inserted [OK]"
+
+    @app.route("/setUser", methods=['GET', 'POST'])
+    @auth.login_required
+    def setUser():
+        try:
+
+            uname = request.json['uname']
+            pwd = request.json['pwd']
+            customer = request.json['customer']
+            privileges = request.json['privileges']
+
+            conn.execute('''INSERT INTO "USERS_DYNAMIC" (username,password,customer,privileges,datecreate)
+            VALUES ('{0}','{1}','{2}','{3}',current_timestamp)'''.format(uname,pwd,customer,privileges))
+            #conn.commit()
+            
+        except Exception as e:
+
+            print("[ALERT] Error caused by: {}".format(e))
+
+        return "[INFO] Data is inserted [OK]"
+
+    @app.route("/setCI", methods=['GET', 'POST'])
+    @auth.login_required
+    def setCI():
+        try:
+
+            code_id = request.json['code_id']
+            customer = request.json['customer']
+            idci = request.json['idci']
+            hostname = request.json['hostname']
+            ip = request.json['ip']
+
+            conn.execute('''INSERT INTO "CI" (customer_code,customer,idci,hostname,ip,dateci)
+            VALUES ('{0}','{1}','{2}','{3}','{4}',current_timestamp)'''.format(code_id,customer,
+            idci,hostname,ip))
+            #conn.commit()
+            
+        except Exception as e:
+
+            print("[ALERT] Error caused by: {}".format(e))
+
+        return "[INFO] Data is inserted [OK]"
+
+    @app.route("/setImpact", methods=['GET', 'POST'])
+    @auth.login_required
+    def setImpact():
+        try:
+
+            idci = request.json['idci']
+            sla_id = request.json['sla_id']
+            impact_id = request.json['impact_id']
+            money_id = request.json['money_id']
+            dowtime_id = request.json['dowtime_id']
+            feeling = request.json['feeling']
+
+            conn.execute('''INSERT INTO "IMPACT" (idci,sla,impact,estimativemoney,downtime,felling,dateimpact)
+            VALUES ('{0}','{1}','{2}','{3}','{4}','{5}',current_timestamp)'''.format(idci,sla_id,impact_id,
+            money_id,dowtime_id,feeling))
+            #conn.commit()
+            
+        except Exception as e:
+
+            print("[ALERT] Error caused by: {}".format(e))
+
+        return "[INFO] Data is inserted [OK]"
+
+    @app.route("/setRelationship", methods=['GET', 'POST'])
+    @auth.login_required
+    def setRelationship():
+        try:
+
+            idci = request.json['idci']
+            sector = request.json['sector']
+            location = request.json['location']
+            typeci = request.json['typeci']
+            journey_id = request.json['journey_id']
+            user_id = request.json['user_id']
+            numberthirst = request.json['numberthirst']
+
+            conn.execute('''INSERT INTO "RELATIONSHIP" (idci,sector,location,type,journey,"user",
+            number_thrist,daterelationship)
+            VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}',current_timestamp)'''.format(idci,sector,
+            location,typeci,journey_id,user_id,numberthirst))
+            #conn.commit()
+            
+        except Exception as e:
+
+            print("[ALERT] Error caused by: {}".format(e))
+
+        return "[INFO] Data is inserted [OK]"
+
+    @app.route("/setDescription", methods=['GET', 'POST'])
+    @auth.login_required
+    def setDescription():
+        try:
+
+            idci = request.json['idci']
+            application_id = request.json['application_id']
+            topology_id = request.json['topology_id']
+            support_id = request.json['support_id']
+
+            conn.execute('''INSERT INTO "DESCRIPTION" (idci,application,topology,support,datedescription)
+            VALUES ('{0}','{1}','{2}','{3}',current_timestamp)'''.format(idci,application_id,
+            topology_id,support_id))
+            #conn.commit()
+            
+        except Exception as e:
+
             print("[ALERT] Error caused by: {}".format(e))
 
         return "[INFO] Data is inserted [OK]"
