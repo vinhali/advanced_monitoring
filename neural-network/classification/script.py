@@ -79,8 +79,8 @@ class originalSize():
             sns.distplot(A, color="dodgerblue", label="A 20%", **kwargs)
             sns.distplot(B, color="orange", label="B 20% - 40%", **kwargs)
             sns.distplot(C, color="deeppink", label="C 40% - 60%", **kwargs)
-            sns.distplot(D, color="green", label="C 60% - 80%", **kwargs)
-            sns.distplot(E, color="red", label="C 80% - 100%", **kwargs)
+            sns.distplot(D, color="green", label="D 60% - 80%", **kwargs)
+            sns.distplot(E, color="red", label="E 80% - 100%", **kwargs)
         
             plt.xlim(50,100)
             plt.legend(loc="upper right")
