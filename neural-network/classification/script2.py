@@ -16,13 +16,18 @@ def data():
     return X,Y
 
 def histogram(mean, sd):
-    bins = np.linspace(0, 100)
-    plt.hist(mean, bins, color='b', alpha=0.5, label='Mean')
-    plt.hist(sd, bins, color='r', alpha=0.5, label='Standard Deviation')
-    plt.legend(loc="upper right")
-    plt.ylabel('Frequency')
-    plt.xlabel('Consume')
+    data = [list(map(int, mean)), list(map(int, sd))]
+    X = np.arange(len(mean))
+
+    width = 0.00
+    for i in range(len(data)):
+        plt.bar(X + width, data[i], width = 1)
+        width = width + 0.25
+    plt.legend(labels=['Mean', 'Standard deviation'])
     plt.title("Histogram: Mean versus Standard Deviation")
+    plt.ylabel('Consume')
+    plt.xlabel('Number of elements (Every 5 is a new block')
+
     return plt.show()
 
 def standardDeviation(data):
