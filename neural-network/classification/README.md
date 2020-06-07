@@ -2,10 +2,6 @@
 
 Este projeto tem como objetivo prever picos de consumo de CPU baseado na relação entre as varíaveis das 60 primeiras ocorrências (1 hora) com os picos das próximas 60 ocorrências.
 
-## Representação dos dados pelo percentual:
-
-<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/histogram.png?raw=true"/>
-
 ## Modelo de dados:
 
 <img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/histogram-data.png?raw=true"/>
