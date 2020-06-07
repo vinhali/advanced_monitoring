@@ -4,7 +4,7 @@ Este projeto tem como objetivo prever picos de consumo de CPU baseado na relaç�
 
 ## Modelo de dados:
 
-<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/histogram-data.png?raw=true"/>
+<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/model.png?raw=true"/>
 
 ## Saída:
 
