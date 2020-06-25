@@ -136,7 +136,19 @@ def output(elements):
     histogramOutput(result)
     return result
 
+def conversionDataframe(NeuronInputNeuronInputay,NeuronOutput):
+    
+    print("[INFO] Converting for dataframe")
+    ni = pd.DataFrame(data= NeuronInputNeuronInputay)
+    ni.columns = ['m1,d1', 'm2,d2', 'm3,d3', 'm4,d4', 'm5,d5']
+
+    no = pd.DataFrame(data= NeuronOutput)
+    no.columns = ['0-20', '20-40', '40-60', '60-80', '80-100']
+
+    return pd.concat([ni, no], axis=1)
+
 data = pd.read_csv('/home/vinhali/Desktop/classification/data/minute.csv')
 Y = data.iloc[:, 1].values
-input(Y)
-output(Y)
+NeuronInputNeuronInputay = input(Y)
+NeuronOutput = output(Y)
+print(conversionDataframe(NeuronInputNeuronInputay, NeuronOutput))
