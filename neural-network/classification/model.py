@@ -136,6 +136,24 @@ def output(elements):
     histogramOutput(result)
     return result
 
+def divisonBigger(data):
+    max_month = 0
+    max_day = 0
+    for j in range(len(data[0])):
+        for i in range(len(data)):
+            if data[i][j][0] > max_month:
+                max_month = data[i][j][0]
+            if data[i][j][1] > max_day:
+                max_day = data[i][j][1]
+        for p in range(len(data)):
+            if max_month != 0:
+                data[p][j][0] = round(data[p][j][0] / max_month, 3)
+            if max_day != 0:
+                data[p][j][1]  = round(data[p][j][1] / max_day, 3)
+        max_month = 0
+        max_day = 0
+    return data
+
 def conversionDataframe(NeuronInputNeuronInputay,NeuronOutput):
     
     print("[INFO] Converting for dataframe")
@@ -151,4 +169,7 @@ data = pd.read_csv('/home/vinhali/Desktop/classification/data/minute.csv')
 Y = data.iloc[:, 1].values
 NeuronInputNeuronInputay = input(Y)
 NeuronOutput = output(Y)
-print(conversionDataframe(NeuronInputNeuronInputay, NeuronOutput))
+
+a = divisonBigger(NeuronInputNeuronInputay)
+#b = divisonBigger(NeuronOutput)
+print(conversionDataframe(a, NeuronOutput))
