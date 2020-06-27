@@ -16,8 +16,9 @@ def histogramNeuronsInput(result):
         ax.bar(x-0.2, data[:,0], color='C0', width=0.4)
         # draw std
         ax.bar(x+0.2, data[:,1], color='C1', width=0.4)
-    # separation line
-    ax.axvline(4.75)
+        # separation line
+        if i < len(result) - 1:
+            ax.axvline(4.75 + i*6, color='black')
     # turn off xticks
     ax.set_xticks([])
     ax.legend(labels=['Average', 'Standard deviation'])
