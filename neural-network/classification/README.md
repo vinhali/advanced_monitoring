@@ -2,6 +2,18 @@
 
 Este projeto tem como objetivo prever picos de consumo de CPU baseado na relação entre as varíaveis das 60 primeiras ocorrências (1 hora) com os picos das próximas 60 ocorrências.
 
+### O ciclo de treino
+
+<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/estrutura.png?raw=true"/>
+
+### Formúla para cada item
+
+<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat.png?raw=true"/>
+
+### Rectified Linear Unit
+
+<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat.png?raw=true"/>
+
 ### Input Layer:
 
 <img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/input_layer.png?raw=true"/>
