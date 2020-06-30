@@ -49,7 +49,7 @@ E assim sucessivamente até formar *20-40.40-60.60-80.80-100*
 
 *Desvio padrão (d1,d2,d3,d4,d5):*
 
-<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat4.png?raw=true" width="200px" height="150px"/>
+<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat4.png?raw=true" width="150px" height="100px"/>
 
 ### Transformando em 0 e 1
 
