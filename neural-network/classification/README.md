@@ -47,4 +47,15 @@ E assim sucessivamente até formar m5, d5 (12x5 = 60)
 
 E assim sucessivamente até formar 20-40.40-60.60-80.80-100
 
+### Sumário
 
+    Layer (type)                 Output Shape              Param #
+    =================================================================
+    
+### Treino
+
+<img src="">
+
+### Resultado
+
+<img src="">
