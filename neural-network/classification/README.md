@@ -8,6 +8,9 @@ Este projeto tem como objetivo prever picos de consumo de CPU baseado na relaç�
 
 ### Normalização:
 
+No caso de redes neurais é importante que as características
+estejam em um range numérico padronizado, por exemplo, entre 0 a 1. Isto possibilita que o algoritmo convirja mais rápido ao resultado.
+
                  m1,d1           m2,d2           m3,d3           m4,d4           m5,d5   0-20  20-40  40-60  60-80  80-100
     0   [0.573, 0.699]  [0.412, 0.224]  [0.696, 0.512]  [0.326, 0.314]   [0.79, 0.685]  1.000    0.5      0      0       0
     1   [0.456, 0.251]  [0.629, 0.523]  [0.344, 0.286]    [0.8, 0.699]    [0.721, 1.0]  1.000    0.5      0      0       0
@@ -47,6 +50,12 @@ E assim sucessivamente até formar 20-40.40-60.60-80.80-100
 > Desvio padrão (d1,d2,d3,d4,d5):
 
 <img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat4.png?raw=true"/>
+
+### Transformando em 0 e 1
+
+Em seguida é selecionado a maior ocorrência de cada coluna e dividido todos os valores da respectiva coluna pela maior ocorrência, exemplo:
+
+> m1 = (Xn > Xn) / Xn
 
 ### Rectified Linear Unit:
 
