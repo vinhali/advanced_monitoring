@@ -64,13 +64,13 @@ Este projeto tem como objetivo prever picos de consumo de CPU baseado na relaç�
     
  ### Explicação da normalização:
 
-> > *m1 = Média de 12 leituras (Em uma janela de 60 dados) - Exemplo ((2 + 5 + 7 ...) / 12*
+> *m1 = Média de 12 leituras (Em uma janela de 60 dados) - Exemplo ((2 + 5 + 7 ...) / 12*
 
-> > *d1 = desvio padrão dos 12 dados*
+> *d1 = desvio padrão dos 12 dados*
 
 E assim sucessivamente até formar m5, d5 (12x5 = 60)
 
-> > *0-20 = Quantas vezes os valores são repetidos no intervalo de 0 a 20 nas próximas 30 leituras (Linha 61,62,62 ...)*
+> *0-20 = Quantas vezes os valores são repetidos no intervalo de 0 a 20 nas próximas 30 leituras (Linha 61,62,62 ...)*
 
 E assim sucessivamente até formar 20-40.40-60.60-80.80-100
 
