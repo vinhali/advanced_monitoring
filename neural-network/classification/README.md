@@ -17,11 +17,11 @@ Este projeto tem como objetivo prever picos de consumo de CPU baseado na rela√ß√
 
 ### Input Layer:
 
-<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/input_layer.png?raw=true" width="1024px" height="500px"/>
+<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/input_layer.png?raw=true" width="600px" height="300px"/>
 
 ### Output Layer:
 
-<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/output_layer.png?raw=true" width="1024px" height="500px"/>
+<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/output_layer.png?raw=true" width="600px" height="300px"/>
 
 ### Normalize:
 
