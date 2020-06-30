@@ -4,7 +4,7 @@ Este projeto tem como objetivo prever picos de consumo de CPU baseado na relaç�
 
 ### O ciclo de treino
 
-<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/estrutura.png?raw=true" width="1024px" height="500px"/>
+<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/estrutura.png?raw=true" width="1024px" height="780px"/>
 
 ### Formúla para cada item
 
