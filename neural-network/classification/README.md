@@ -62,17 +62,15 @@ Este projeto tem como objetivo prever picos de consumo de CPU baseado na relaç�
     46  [0.229, 0.148]  [0.683, 0.624]  [0.222, 0.146]  [0.687, 0.732]  [0.296, 0.184]  1.000    0.5      0      0       0
     47  [0.646, 0.627]  [0.204, 0.152]  [0.542, 0.632]   [0.36, 0.224]  [0.291, 0.215]  1.000    0.5      0      0       0
     
- ### Explicação do modelamento:
+ ### Explicação da normalização:
 
-m1 = Média de 12 leituras (Em uma janela de 60 dados) - Exemplo ((2 + 5 + 7 ...) / 12
----
+*m1 = Média de 12 leituras (Em uma janela de 60 dados) - Exemplo ((2 + 5 + 7 ...) / 12*
 
-d1 = desvio padrão dos 12 dados
----
+*d1 = desvio padrão dos 12 dados*
+
 E assim sucessivamente até formar m5, d5 (12x5 = 60)
 
-0-20 = Quantas vezes os valores são repetidos no intervalo de 0 a 20 nas próximas 30 leituras (Linha 61,62,62 ...)
----
+*0-20 = Quantas vezes os valores são repetidos no intervalo de 0 a 20 nas próximas 30 leituras (Linha 61,62,62 ...)*
 
 E assim sucessivamente até formar 20-40.40-60.60-80.80-100
 
