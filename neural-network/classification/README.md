@@ -45,7 +45,7 @@ E assim sucessivamente até formar *20-40.40-60.60-80.80-100*
 
 *Média (m1,m2,m3,m4,m5):*
 
-<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat5.png?raw=true" width="250px" height="150px"/>
+<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat5.png?raw=true" width="150px" height="75px"/>
 
 *Desvio padrão (d1,d2,d3,d4,d5):*
 
