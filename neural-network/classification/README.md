@@ -40,8 +40,13 @@ E assim sucessivamente até formar 20-40.40-60.60-80.80-100
 
 ### Formúla para cada item:
 
-Mx = x1, x2, x3,...,xn
-Dx = 
+> Média (m1,m2,m3,m4,m5):
+
+<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat5.png?raw=true"/>
+
+> Desvio padrão (d1,d2,d3,d4,d5):
+
+<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat4.png?raw=true"/>
 
 ### Rectified Linear Unit:
 
