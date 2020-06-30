@@ -12,7 +12,8 @@ Este projeto tem como objetivo prever picos de consumo de CPU baseado na rela√ß√
 
 ### Rectified Linear Unit
 
-<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat.png?raw=true"/>
+<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat2.png?raw=true"/>
+<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat3.jpeg?raw=true"/>
 
 ### Input Layer:
 
