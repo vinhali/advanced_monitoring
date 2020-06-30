@@ -23,7 +23,7 @@ estejam em um range numérico padronizado, por exemplo, entre 0 a 1. Isto possib
     
 ## Explicação da normalização:
  
-### Input Layer:
+### Entrada da camada:
 
 > *m1 = Média de 12 leituras (Em uma janela de 60 dados) - Exemplo ((2 + 5 + 7 ...) / 12*
 
@@ -33,7 +33,7 @@ E assim sucessivamente até formar *m5, d5 (12x5 = 60)*
 
 <img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/input_layer.png?raw=true" width="600px" height="300px"/>
 
-### Output Layer:
+### Saída da camada:
 
 > *0-20 = Quantas vezes os valores são repetidos no intervalo de 0 a 20 nas próximas 30 leituras (Linha 61,62,62 ...)*
 
@@ -45,7 +45,7 @@ E assim sucessivamente até formar *20-40.40-60.60-80.80-100*
 
 *Média (m1,m2,m3,m4,m5):*
 
-<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat5.png?raw=true" width="200px" height="150px"/>
+<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat5.png?raw=true" width="250px" height="150px"/>
 
 *Desvio padrão (d1,d2,d3,d4,d5):*
 
