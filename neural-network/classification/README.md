@@ -23,12 +23,11 @@ Este projeto tem como objetivo prever picos de consumo de CPU baseado na relaç�
 ### Input Layer:
 
 > *m1 = Média de 12 leituras (Em uma janela de 60 dados) - Exemplo ((2 + 5 + 7 ...) / 12*
-
-<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/input_layer.png?raw=true" width="600px" height="300px"/>
-
 > *d1 = desvio padrão dos 12 dados*
 
 E assim sucessivamente até formar m5, d5 (12x5 = 60)
+
+<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/input_layer.png?raw=true" width="600px" height="300px"/>
 
 ### Output Layer:
 
