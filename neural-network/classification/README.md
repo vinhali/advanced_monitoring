@@ -1,6 +1,6 @@
 # Classificação de picos de consumo
 
-Este projeto tem como objetivo prever picos de consumo de CPU baseado na relação entre as varíaveis das 60 primeiras ocorrências (1 hora) com os picos das próximas 30 ocorrências.
+Esse algoritmo tem como objetivo prever picos de consumo de CPU baseado na relação entre as varíaveis das 60 primeiras ocorrências (1 hora) com os picos das próximas 30 ocorrências.
 
 ### O ciclo de treino:
 
