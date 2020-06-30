@@ -1,6 +1,6 @@
 # Classificação de picos de consumo
 
-Este projeto tem como objetivo prever picos de consumo de CPU baseado na relação entre as varíaveis das 60 primeiras ocorrências (1 hora) com os picos das próximas 60 ocorrências.
+Este projeto tem como objetivo prever picos de consumo de CPU baseado na relação entre as varíaveis das 60 primeiras ocorrências (1 hora) com os picos das próximas 30 ocorrências.
 
 ### O ciclo de treino:
 
@@ -29,7 +29,7 @@ estejam em um range numérico padronizado, por exemplo, entre 0 a 1. Isto possib
 
 > *d1 = desvio padrão dos 12 dados*
 
-E assim sucessivamente até formar m5, d5 (12x5 = 60)
+E assim sucessivamente até formar *m5, d5 (12x5 = 60)*
 
 <img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/input_layer.png?raw=true" width="600px" height="300px"/>
 
@@ -37,7 +37,7 @@ E assim sucessivamente até formar m5, d5 (12x5 = 60)
 
 > *0-20 = Quantas vezes os valores são repetidos no intervalo de 0 a 20 nas próximas 30 leituras (Linha 61,62,62 ...)*
 
-E assim sucessivamente até formar 20-40.40-60.60-80.80-100
+E assim sucessivamente até formar *20-40.40-60.60-80.80-100*
 
 <img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/output_layer.png?raw=true" width="600px" height="300px"/>
 
@@ -64,17 +64,18 @@ O modelo sequencial permite inserir camadas em série, onde o output da primeira
 <img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat2.png?raw=true"/>
 
 Graficamente:
+
 <img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat3.jpeg?raw=true"/>
 
-### Sumário:
+### Sumário (Estrutura da rede):
 
     Layer (type)                 Output Shape              Param #
     =================================================================
     
-### Treino:
+### Treino (Precisão histórica do algoritmo):
 
 <img src="">
 
-### Resultado:
+### Resultado (Previsão):
 
 <img src="">
