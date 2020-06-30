@@ -1,16 +1,16 @@
-# Classificação de picos de consumo:
+# Classificação de picos de consumo
 
 Este projeto tem como objetivo prever picos de consumo de CPU baseado na relação entre as varíaveis das 60 primeiras ocorrências (1 hora) com os picos das próximas 60 ocorrências.
 
-### O ciclo de treino
+### O ciclo de treino:
 
 <img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/estrutura.png?raw=true" width="500px" height="600px">
 
-### Formúla para cada item
+### Formúla para cada item:
 
 <img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat.png?raw=true"/>
 
-### Rectified Linear Unit
+### Rectified Linear Unit:
 
 <img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat2.png?raw=true"/>
 <img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat3.jpeg?raw=true"/>
@@ -23,7 +23,7 @@ Este projeto tem como objetivo prever picos de consumo de CPU baseado na relaç�
 
 <img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/output_layer.png?raw=true" width="600px" height="300px"/>
 
-### Normalize:
+### Normalização:
 
                  m1,d1           m2,d2           m3,d3           m4,d4           m5,d5   0-20  20-40  40-60  60-80  80-100
     0   [0.573, 0.699]  [0.412, 0.224]  [0.696, 0.512]  [0.326, 0.314]   [0.79, 0.685]  1.000    0.5      0      0       0
@@ -47,15 +47,15 @@ E assim sucessivamente até formar m5, d5 (12x5 = 60)
 
 E assim sucessivamente até formar 20-40.40-60.60-80.80-100
 
-### Sumário
+### Sumário:
 
     Layer (type)                 Output Shape              Param #
     =================================================================
     
-### Treino
+### Treino:
 
 <img src="">
 
-### Resultado
+### Resultado:
 
 <img src="">
