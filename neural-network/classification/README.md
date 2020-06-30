@@ -40,7 +40,8 @@ E assim sucessivamente até formar 20-40.40-60.60-80.80-100
 
 ### Formúla para cada item:
 
-<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat.png?raw=true"/>
+Mx = x1, x2, x3,...,xn
+Dx = 
 
 ### Rectified Linear Unit:
 
