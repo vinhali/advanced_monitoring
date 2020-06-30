@@ -43,11 +43,11 @@ E assim sucessivamente até formar 20-40.40-60.60-80.80-100
 
 ### Formúla para cada item:
 
-> Média (m1,m2,m3,m4,m5):
+*Média (m1,m2,m3,m4,m5):*
 
 <img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat5.png?raw=true"/>
 
-> Desvio padrão (d1,d2,d3,d4,d5):
+*Desvio padrão (d1,d2,d3,d4,d5):*
 
 <img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat4.png?raw=true"/>
 
@@ -59,7 +59,11 @@ Em seguida é selecionado a maior ocorrência de cada coluna e dividido todos os
 
 ### Rectified Linear Unit:
 
+O modelo sequencial permite inserir camadas em série, onde o output da primeira camada serve como input da segunda, e assim por diante. Usaremos a função “relu”, Rectified Linear Unit, que é dada pela formula:
+
 <img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat2.png?raw=true"/>
+
+Graficamente:
 <img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat3.jpeg?raw=true"/>
 
 ### Sumário:
