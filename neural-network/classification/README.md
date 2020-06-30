@@ -45,11 +45,11 @@ E assim sucessivamente até formar *20-40.40-60.60-80.80-100*
 
 *Média (m1,m2,m3,m4,m5):*
 
-<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat5.png?raw=true" width="100px" height="100px"/>
+<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat5.png?raw=true" width="200px" height="150px"/>
 
 *Desvio padrão (d1,d2,d3,d4,d5):*
 
-<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat4.png?raw=true" width="100px" height="100px"/>
+<img src="https://github.com/vinhali/advanced_monitoring/blob/master/neural-network/classification/img/mat4.png?raw=true" width="200px" height="150px"/>
 
 ### Transformando em 0 e 1
 
