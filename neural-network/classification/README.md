@@ -69,8 +69,17 @@ Graficamente:
 
 ### Sumário (Estrutura da rede):
 
-    Layer (type)                 Output Shape              Param #
+    Layer (type)                 Output Shape              Param #   
     =================================================================
+    layer1 (Dense)               (None, 2)                 22        
+    _________________________________________________________________
+    layer2 (Dense)               (None, 3)                 9         
+    _________________________________________________________________
+    layer3 (Dense)               (None, 10)                40        
+    =================================================================
+    Total params: 71
+    Trainable params: 71
+    Non-trainable params: 0
     
 ### Treino (Precisão histórica do algoritmo):
 
