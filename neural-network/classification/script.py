@@ -253,7 +253,9 @@ def neural():
     # Check the architecture of the model (you may skip this line)
     model.summary()
     # The training
-    model.fit(X, y, batch_size=4, epochs=100)
+    model.fit(X, y, batch_size=8, epochs=2)
+    #Predict
+    print(model.predict(X))
 
 def main():
     """ Initializes the script """
