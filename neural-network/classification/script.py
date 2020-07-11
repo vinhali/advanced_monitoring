@@ -1,82 +1,265 @@
 # -*- coding: utf-8 -*-
-try:
-    import operator
-    import pandas as pd
-    import numpy as np
-    import matplotlib.mlab as mlab
-    import matplotlib.pyplot as plt
-    import statistics
-except ImportError as e:
-    print("[FAILED] {}".format(e))
+import operator
+import statistics
+import collections
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
 
-def data():
-    data = pd.read_csv('dir-here/data.csv')
-    X = data.iloc[:, 0].values
-    Y = data.iloc[:, 1].values
-    return X,Y
-
-def histogram(result):
+def histogramNeuronsInput(result):
+    """ Generates histogram of input neurons """
     fig, ax = plt.subplots(figsize=(10,6))
     for i in range(len(result)):
         data = np.array(result[i])
         x=np.arange(len(data)) + i*6
-        # draw means
+        # draw averages
         ax.bar(x-0.2, data[:,0], color='C0', width=0.4)
         # draw std
         ax.bar(x+0.2, data[:,1], color='C1', width=0.4)
-    # separation line
-    ax.axvline(4.75)
+        # separation line
+        if i < len(result) - 1:
+            ax.axvline(4.75 + i*6, color='black')
     # turn off xticks
     ax.set_xticks([])
-    ax.legend(labels=['Mean', 'Standard deviation'])
+    ax.legend(labels=['Average', 'Standard deviation'])
     leg = ax.get_legend()
     leg.legendHandles[0].set_color('C0')
     leg.legendHandles[1].set_color('C1')
-    plt.title("Histogram: Mean versus Standard Deviation")
+    plt.title("Histogram: Average versus Standard Deviation")
     plt.ylabel('Consume')
     plt.xlabel('Number of elements (Every 5 is a new block)')
 
     return plt.show()
 
+def histogramNeuronsOutput(result):
+    """ Generates histogram of output neurons """
+    colors = ['blue', 'green', 'yellow', 'orange', 'red']
+    labels = ['0-20', '20-40', '40-60', '60-80', '80-100']
+    fig, ax = plt.subplots(figsize=(10, 6))
+    for i, data in enumerate(result):
+        x = np.arange(len(data)) + i*6
+        bars = ax.bar(x, data, color=colors, width=0.4)
+        if i == 0:
+            for bar, label in zip(bars, labels):
+                bar.set_label(label)
+        if i < len(result) - 1:
+            # separation line after each part, but not after the last
+            ax.axvline(4.75 + i*6, color='black')
+    ax.set_xticks([])
+    ax.legend()
+    ax.set_title("Histogram")
+    ax.set_ylabel('Consume')
+    ax.set_xlabel('Percent')
+    plt.show()
+
 def standardDeviation(data):
+    """ Calculates standard deviation """
     return statistics.stdev(data)
        
-def mean(data):
+def average(data):
+    """ Calculates average """
     return statistics.mean(data)
- 
-def sampleDivision(elements, n):
+
+def captureOcurrences(elements, n):
+    """ Capture an X number of elements within a list """
     L = len(elements)
     return [elements[i: i+n] for i in range(0, L, n)]
 
-def modeling(elements):
-    n = 12
-    collections = len(elements)
-    L = 60
-    sampleShift = []
-    sampleShiftMean = []
-    sampleShiftStandardDeviation = []
-    for i in range(0, L, n):
-        j = 0
-        while j < collections:
-            sampleShiftMean.append(mean(elements[j][i: i+n]))
-            sampleShiftStandardDeviation.append(standardDeviation(elements[j][i: i+n]))
-            sampleShift.append(mean(elements[j][i: i+n]))
-            sampleShift.append(standardDeviation(elements[j][i: i+n]))
-            j += 1
-    return sampleShift, sampleShiftMean, sampleShiftStandardDeviation
+def neuronsInput(elements):
+    """ Generates input neuron modeling (5 averages, 5 standard deviations - Between 12 occurrences in a window of 60 readings) """
+    result = []
+    temp = []
+    start = 0
+    limit = 60
+    size = int(len(elements))
+    TargetDivision = int(size / 30)
+    repetitions = 0
+    five = 0
+
+    while repetitions < TargetDivision:
+        temp = []
+
+        five += 1
+        ocurrences = captureOcurrences(elements[start: limit],12)
+        for i in ocurrences:
+            print("[INFO] 12 Ocurrences: {}".format(i))
+            print("[INFO] Average: {}".format(average(i)))
+            m = average(i)
+            print("[INFO] Standard Deviation: {}".format(standardDeviation(i)))
+            sd = standardDeviation(i)
+            print("Result: [{},{}]\n\n".format(m,sd))
+            temp.append([m,sd])
+
+        print("[INFO] Cycle Result {}: \n{}\n\n".format(repetitions+1,result))
+        print(temp)
+        result.append(temp)
+
+        repetitions += 1
+        limit += 10
+        start += 10
+
+    print("[INFO] Final result of phase Neurons Input: \n{}\n".format(result))
+    return result
+
+def neuronsOutput(elements):
+    """ Generates output neuron modeling (Histogram of the next 30 data readings) """
+    result = []
+    start = 61
+    limit = 90
+    size = int(len(elements))
+    TargetDivision = int(size / 30)
+    repetitions = 0
+
+    while repetitions < TargetDivision:
+
+        print("[INFO] Reading [{}:{}]".format(start, limit))
+        print("[INFO] Elements:\n{}".format(elements[start: limit]))
+        counter=collections.Counter(elements[start: limit])
+        
+        consumption0_20 = 0
+        consumption20_40 = 0
+        consumption40_60 = 0
+        consumption60_80 = 0
+        consumption80_100 = 0
+        for key in counter:
+            if key <= 20:
+                consumption0_20 += int(counter[key])
+            elif key > 20 and key < 40:
+                consumption20_40 += int(counter[key])
+            elif key > 40 and key < 60:
+                consumption40_60 += int(counter[key])
+            elif key > 60 and key < 80:
+                consumption60_80 += int(counter[key])
+            elif key > 80 and key < 100:
+                consumption80_100 += int(counter[key])
+
+        print("[INFO] Histogram: 0-20 [{}], 20-40 [{}], 40-60 [{}], 60-80 [{}], 80-100 [{}]\n\n".format(consumption0_20,consumption20_40,consumption40_60,consumption60_80,consumption80_100))
+
+        result.append([consumption0_20,consumption20_40,consumption40_60,consumption60_80,consumption80_100])
+
+        repetitions += 1
+        limit += 10
+        start += 10
+
+    print("[INFO] Final result of phase Neurons Output: \n{}\n".format(result))
+    return result
+
+def binaryInput(data):
+    """ I divided the values ​​of each column by the highest occurrence in the column """
+    max_average = 0
+    max_deviation = 0
+    for j in range(len(data[0])):
+        for i in range(len(data)):
+            if data[i][j][0] > max_average:
+                max_average = data[i][j][0]
+            if data[i][j][1] > max_deviation:
+                max_deviation = data[i][j][1]
+        for p in range(len(data)):
+            if max_average != 0:
+                data[p][j][0] = round(data[p][j][0] / max_average, 3)
+            if max_deviation != 0:
+                data[p][j][1]  = round(data[p][j][1] / max_deviation, 3)
+        max_average = 0
+        max_deviation = 0
+    return data
+
+def binaryOutput(data):
+    """ I divided the values ​​of each column by the highest occurrence in the column """
+    max_consume = 0
+    for j in range(len(data[0])):
+        for i in range(len(data)):
+            if data[i][j] > max_consume:
+                max_consume = data[i][j]
+        for p in range(len(data)):
+            if max_consume != 0:
+                data[p][j] = round(data[p][j] / max_consume, 3)
+        max_consume = 0
+    return data
+
+def conversionDataframe(dataNeuronInput,dataNeuronOutput):
+    """ Converts data to a dataframe pandas """
+    ni = pd.DataFrame(data= dataNeuronInput)
+    ni.columns = ['m1,d1', 'm2,d2', 'm3,d3', 'm4,d4', 'm5,d5']
+
+    no = pd.DataFrame(data= dataNeuronOutput)
+    no.columns = ['0-20', '20-40', '40-60', '60-80', '80-100']
+
+    return pd.concat([ni, no], axis=1)
+
+def modeling(data):
+    """ Generates the initial model for training the neural network """
+    readings = data.iloc[:, 1].values
+
+    dataNeuronInput = neuronsInput(readings)
+    #histogramNeuronsInput(dataNeuronInput)
+
+    dataNeuronOutput = neuronsOutput(readings)
+    #histogramNeuronsOutput(dataNeuronOutput)
+
+    dataFrameNoBinary = conversionDataframe(dataNeuronInput, dataNeuronOutput)
+    print("[INFO] Viewing non-binary data: \n{}\n\n".format(dataFrameNoBinary))
+
+    binaryNeuronInput = binaryInput(dataNeuronInput)
+    print(binaryNeuronInput)
+    binaryNeuronOutput = binaryOutput(dataNeuronOutput)
+    print(binaryNeuronOutput)
+    dataFrameBinary = conversionDataframe(binaryNeuronInput, binaryNeuronOutput)
+    print("[INFO] Converting to binary data frame: \n{}\n\n".format(dataFrameBinary))
+
+    return dataFrameBinary
+
+def neural():
+    
+    df = modeling(pd.read_csv('/home/vinhali/Desktop/classification/data/data.csv'))
+    
+    # only taking 'mi' and 'di' inputs for simplicity
+    ndf = df.to_numpy()[:, :5]
+
+    # ndf matrix contains python lists, it must be broken into floats
+    temp = []
+    for a in ndf:
+        for b in a:
+            temp.append(b)
+    ndf = (np.array(temp)).reshape((48, 10))
+
+    # Converting data matrix in such a form that we are given an input of i'th 
+    # time, and have to predict for (i+1)'th time
+    X = np.array([ndf[i, :] for i in range(0, ndf.shape[0]-1)])
+    print(X)
+    y = np.array([ndf[i, :] for i in range(1, ndf.shape[0])])
+    print('input-output shape', X.shape, y.shape)
+    print(y)
+    
+    # Define Sequential model with 3 layers
+    model = keras.Sequential(
+        [   
+            # First layer of a sequential model must contain a input_shape
+            # that defines the features
+            layers.Dense(2, activation="relu", name="layer1", input_shape=X.shape[1:]),
+            layers.Dense(3, activation="relu", name="layer2"),
+            # The last layer of a sequential model should be equal to the number of
+            # outputs, in this case : 5*2 = 10  (5 [mi, di] pairs)
+            layers.Dense(10, name="layer3"),
+        ]
+    )
+
+    # Compile the model and define a loss function (loss function generates 
+    # penalty for a wrong output)
+    model.compile(optimizer = 'Adam', loss = 'mse', metrics = ['mae'])
+    #model.compile(loss='mse')
+    # Check the architecture of the model (you may skip this line)
+    model.summary()
+    # The training
+    model.fit(X, y, batch_size=4, epochs=100)
 
 def main():
-    try:
+    """ Initializes the script """
+    print("[INFO] Start *******************************************************************************")
+    neural()
+    print("[INFO] End *********************************************************************************")
 
-        X,Y = data()
-        sampleSize = sampleDivision(Y, 60)
-        sampleShift, sampleShiftMean, sampleShiftStandardDeviation = modeling(sampleSize)
-        sampleRate = sampleDivision(sampleDivision(sampleShift,2), 5)
-        print("[INFO] Sample rate generated is:\n\n{}\n\n[END]".format(sampleRate))
-        histogram(sampleRate)
-
-    except Exception as e:
-        print("[FAILED] Caused by: {}".format(e))
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
